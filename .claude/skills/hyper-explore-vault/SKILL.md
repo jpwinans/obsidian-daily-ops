@@ -8,7 +8,7 @@ description: |
   Triggers: "deep audit my vault", "what does my vault tell you", "/hyper-explore-vault".
 model: claude-opus-4-7
 effort: max
-allowed-tools: Read Glob Grep Bash
+allowed-tools: Read Glob Grep Bash Task TaskOutput
 ---
 
 # /hyper-explore-vault — Deep multi-agent vault audit
@@ -36,6 +36,10 @@ Output: structured inventory with file counts per directory. Keep as your workin
 Launch **6 background agents in parallel** using the Task tool (`subagent_type: "general-purpose"`, `run_in_background: true`). Each agent reads every file in its assigned region.
 
 **Each agent prompt must include the full file list it should read** (from Phase 1). Don't rely on agents to discover files themselves.
+
+**Fallback if the Task tool isn't available:** if the harness disallows background agents (e.g., older Claude Code, restricted permissions), fall back to running each region's analysis sequentially in this skill's main context. Skip Phase 3 (collection) and merge findings inline as you go.
+
+**Fresh-vault note:** on a sparsely populated vault (under ~50 files), the multi-agent parallelism is overkill. Detect this in Phase 1 (`total_files < 50`) and run sequentially regardless — the synthesis is still useful but cheaper.
 
 ### Agent 1: Atlas & Knowledge Base
 Files: everything under `Atlas/`. Analyze:

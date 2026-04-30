@@ -131,6 +131,19 @@ Return as `conventions: { dailyNotePath: "...", meetingIgnorePatterns: [...], ..
 
 Never invent data. If the user wrote `TODO` or left placeholders, treat them as empty.
 
+## Contract for calling skills
+
+Every workflow skill that loads `vault-config` should:
+
+1. **On `status: "missing"`** — stop the skill immediately and surface this exact message to the user:
+   > "No `CLAUDE.md` at vault root. Copy `CLAUDE.md.template` to `CLAUDE.md`, fill in your people / channels / projects / GTD labels, then re-run this skill. See `CLAUDE.md.example` for a filled-out reference."
+
+2. **On `status: "error"`** — stop and report the specific section that failed validation, with the expected format. Do not try to proceed with partial config for required sections.
+
+3. **On `status: "ok"` with `warnings`** — continue, but include a "Gaps" line in the output noting what's missing and which features will be skipped (e.g., "Skipped Slack scan — no `## Channels` section in CLAUDE.md").
+
+This contract keeps the user-facing failure mode consistent across the suite.
+
 ## Caching
 
 Within a single command invocation, parse once and reuse. Other skills calling you in the same session can reference the parsed object without re-reading `CLAUDE.md`.

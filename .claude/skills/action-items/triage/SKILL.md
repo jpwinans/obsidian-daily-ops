@@ -40,7 +40,10 @@ Plus a Phase 2 vault write-back — after the browser session, the page emits a 
 ### 1. Read context + backlog
 
 1. Load `vault-config` for `personTiers`, `vault.layout`. Identify Tier 1-2 people (the user's manager and skip-level) — these drive the BossBoost.
-2. Open `📋 Action Items.md` at vault root. Parse every open task (`- [ ]`) in the `## Open` section, grouped by Work Type (Strategic / Operational / Relational).
+2. Open `📋 Action Items.md` at vault root.
+   - **If the file does not exist:** stop with a clear message: "No `📋 Action Items.md` at vault root yet. Run `/action-items:compress` first to consolidate vault tasks into a ranked backlog, then re-run this skill."
+   - **If it exists but has no open tasks:** stop and report "Backlog is empty — nothing to triage."
+   - Otherwise, parse every open task (`- [ ]`) in the `## Open` section, grouped by Work Type (Strategic / Operational / Relational).
 3. Parse `## Waiting On Others` (these get a `waiting: true` flag — shown in triage but default to "Keep" with a different UI treatment) and `## Someday / Maybe` (`someday: true` — only in a collapsed drawer, not surfaced for triage).
 
 Extract for each task:
