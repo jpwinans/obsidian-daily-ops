@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(git status)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
+    ]
+  },
+  "_comment": "Copy this file to settings.local.json and edit. Add MCP tool patterns as you connect Slack, Gmail, Google Calendar, and Notion (e.g. mcp__claude_ai_Slack__slack_read_channel)."
+}

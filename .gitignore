@@ -1,0 +1,15 @@
+.DS_Store
+.obsidian/workspace*
+.obsidian/cache
+.obsidian/app.json
+.trash/
+*.swp
+*.swo
+*.bak
+
+# Local Claude state — keep template, ignore working file
+.claude/settings.local.json
+!.claude/settings.local.json.example
+
+# Personal CLAUDE.md — users fill from CLAUDE.md.template
+CLAUDE.md
