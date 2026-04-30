@@ -23,10 +23,10 @@ Transform a raw meeting note or transcript into a structured, actionable note ma
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `vault.layout`, `personTiers`, `projects`, `conventions`.
+1. Load `vault-config` for `vault.layout`, `personTiers`, `projects`, `conventions`. Apply the documented `vault-config` contract.
 2. Load `obsidian-markdown` for syntax.
 3. Load `meeting-notes` for the canonical meeting note structure and the extraction algorithm.
-4. Read the raw note at the provided path.
+4. Read the raw note at the provided path. If the path doesn't exist, stop and tell the user.
 
 ### Step 2 — Research context
 

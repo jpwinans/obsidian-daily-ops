@@ -99,6 +99,8 @@ In chronological order:
 - **Recurring meeting** → invoke `prep:meeting` with the vault folder name (or event title)
 - **Ad hoc** → invoke `prep:meeting` with `[event title] | as Ad Hoc`
 
+**Sub-skill failure handling:** if a `prep:1on1` or `prep:meeting` invocation fails (MCP unavailable, write permission denied, malformed input), capture the error and continue with the next meeting. Do not abort the whole orchestration. The Step 8 final summary records each meeting's status (`✓ created`, `✓ updated`, or `✗ failed: <reason>`). One bad prep should not derail the rest of the day.
+
 ### Step 7 — Rewrite the Today's Meetings dashboard
 
 **Only when target date is today.** Skip for past or future dates.
@@ -164,8 +166,9 @@ List any meetings where prep was skipped or failed, with the reason.
 
 ## Notes
 
-- If no non-ignored meetings: say so and exit.
+- If no non-ignored meetings: say so and exit cleanly. Do not write or rewrite the dashboard.
 - If Calendar MCP is unavailable: say so and exit. Do not guess at meetings.
+- If the calendar returns zero events for the day (genuinely empty calendar): report "No meetings scheduled for [date]" and exit without writing the dashboard.
 - `prep:meeting` and `prep:1on1` run their full research and note creation flows — no need to pre-gather data here.
 - If a prep note already exists for today, the individual prep skill will ask before overwriting.
 - For 1-1s, cross-reference the person's name against `<vault.layout.people>/`. If no person note exists, note it but still run `prep:1on1`.

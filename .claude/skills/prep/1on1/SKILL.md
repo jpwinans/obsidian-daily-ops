@@ -29,7 +29,7 @@ Strip `@` prefix, `<vault.layout.people>/` path prefix, and `.md` suffix to get 
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `personTiers`, `directReports`, `stakeholders`, `projects`, `notion`, `vault.layout`.
+1. Load `vault-config` for `personTiers`, `directReports`, `stakeholders`, `projects`, `notion`, `vault.layout`. Apply the documented `vault-config` contract.
 2. Load `obsidian-markdown` for syntax.
 3. Load `meeting-notes` skill — use its `templates/1on1.md` as the base.
 

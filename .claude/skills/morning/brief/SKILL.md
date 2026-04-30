@@ -25,9 +25,9 @@ No arguments. Uses today's date.
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `channels`, `personTiers`, `projects`, `conventions`, `vault.layout`.
+1. Load `vault-config` for `channels`, `personTiers`, `projects`, `conventions`, `vault.layout`. Apply the documented `vault-config` contract for `missing` / `error` / `warnings` states.
 2. Load `obsidian-markdown` for syntax reference.
-3. Read the Daily Note template at `<vault.layout.templates>/Daily Note.md`.
+3. Read the Daily Note template at `<vault.layout.templates>/Daily Note.md`. If missing, fall back to minimal frontmatter (`date`, `tags: [daily]`, `status: active`) and continue.
 
 ### Step 2 — Check the daily note
 

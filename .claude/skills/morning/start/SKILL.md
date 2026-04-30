@@ -34,8 +34,8 @@ No arguments. Uses today's date automatically.
 
 1. Load `vault-config` skill to parse `CLAUDE.md`. From it you need: `channels`, `personTiers`, `directReports`, `stakeholders`, `projects`, `labels`, `conventions`, and `vault.layout`.
 2. Load `obsidian-markdown` skill for syntax reference.
-3. Read the Daily Note template at `<vault.layout.templates>/Daily Note.md`.
-4. If `vault-config` returns `status: "missing"` (no CLAUDE.md), bail with a clear setup message.
+3. Read the Daily Note template at `<vault.layout.templates>/Daily Note.md`. If the template is missing (user deleted it), fall back to a minimal frontmatter (`date`, `tags: [daily]`, `status: active`) and continue.
+4. Apply the `vault-config` contract: on `status: "missing"`, `status: "error"`, or warnings — follow the documented behavior (missing → bail with setup message; error → bail with section detail; warnings → continue and surface gaps in stdout).
 
 ### Step 2 — Check the daily note
 

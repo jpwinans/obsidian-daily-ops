@@ -26,7 +26,7 @@ No arguments.
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `channels`, `personTiers`, `directReports`, `projects`, `vault.layout`.
+1. Load `vault-config` for `channels`, `personTiers`, `directReports`, `projects`, `vault.layout`. Apply the documented `vault-config` contract — if no `## Channels` section, skip the Slack scan and run vault-state-only.
 
 ### Step 2 — Scan Slack via slack-triage
 

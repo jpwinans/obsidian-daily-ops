@@ -30,7 +30,7 @@ Email is the noisiest input. Most inbox messages are FYI, automated, or someone 
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `personTiers`, `directReports`, `stakeholders`, `labels`.
+1. Load `vault-config` for `personTiers`, `directReports`, `stakeholders`, `labels`. Apply the documented `vault-config` contract — if no `## Gmail GTD Labels` section, the skill cannot recommend labels; surface the gap and exit.
 2. Note today's date for time-sensitivity.
 
 ### Step 2 — Delegate to gmail-gtd-triage

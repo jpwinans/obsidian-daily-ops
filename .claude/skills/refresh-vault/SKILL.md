@@ -27,6 +27,8 @@ Notes are interconnected via wikilinks. When one note is updated with new inform
 
 Execute in order. Be thorough but efficient — read strategically, not exhaustively.
 
+Apply the `vault-config` contract first (`missing` / `error` / `warnings`). If `CLAUDE.md` is missing, surface the standard setup message and stop — this skill is a no-op without conventions to anchor on.
+
 ### Step 1 — Build the file freshness map
 
 Run a bash command to list every `.md` file (excluding `.claude/`, `.trash/`, `_Meta/Templates/`) sorted by modification time desc.
@@ -34,6 +36,8 @@ Run a bash command to list every `.md` file (excluding `.claude/`, `.trash/`, `_
 ```
 find . -name "*.md" -not -path "./.claude/*" -not -path "./.trash/*" -not -path "./_Meta/Templates/*" -printf "%T@ %p\n" | sort -rn
 ```
+
+**If the find returns fewer than ~20 files** (fresh clone, brand-new vault), this skill's drift/DRY detection has nothing to compare against. Report "Vault is too small for a meaningful consistency audit yet — come back once you have ~20+ notes" and exit.
 
 Group into three tiers:
 - **Tier 1 (Source of Truth):** modified in the last 24 hours

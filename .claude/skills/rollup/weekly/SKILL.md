@@ -27,9 +27,9 @@ Aggregate the week's activity into a structured weekly review.
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `vault.layout`, `projects`, `conventions`.
+1. Load `vault-config` for `vault.layout`, `projects`, `conventions`. Apply the documented `vault-config` contract.
 2. Load `obsidian-markdown` for syntax.
-3. Read the Weekly Note template at `<vault.layout.templates>/Weekly Note.md`.
+3. Read the Weekly Note template at `<vault.layout.templates>/Weekly Note.md`. If missing, fall back to minimal weekly-note frontmatter (`date`, `tags: [weekly]`, `week: YYYY-Www`, `status: draft`) and continue.
 
 ### Step 2 — Determine week range
 
@@ -47,6 +47,8 @@ Read all relevant notes from the week:
 3. **1:1 notes:** files matching `<vault.layout.oneOnOnes>/*/YYYY-MM-DD.md` within range.
 4. **Project status:** read active project notes from `<vault.layout.projects>/`.
 5. **OKR status:** read `<vault.layout.outcomes>/Current OKRs.md` if it exists.
+
+**If zero source notes are found across all of the above** (fresh clone, vacation week, vault used only sporadically), stop here and report: "No vault activity in the week of [Mon date] – [Fri date]. Nothing to roll up. Run `/morning:start` and `/rollup:daily` during the week to populate daily notes that this skill can aggregate." Do not write an empty weekly review.
 
 ### Step 4 — Extract and categorize
 

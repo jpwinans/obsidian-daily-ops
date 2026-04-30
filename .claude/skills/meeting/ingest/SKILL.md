@@ -32,7 +32,7 @@ Find transcript emails in Gmail, extract content, and populate or enrich the cor
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `vault.layout`, `personTiers`, `projects`.
+1. Load `vault-config` for `vault.layout`, `personTiers`, `projects`. Apply the documented `vault-config` contract.
 2. Load `obsidian-markdown` for syntax.
 3. Load `meeting-notes` for the structure standard.
 
@@ -51,6 +51,8 @@ Run:
 3. `from:meetings-noreply@google.com newer_than:{N}d`
 
 Combine + dedupe by thread ID. For each: capture thread ID, message ID, subject, date, snippet, attachment/link metadata.
+
+**If zero matching emails are found in the lookback window:** stop here and report "No new transcript emails in the last N days. Nothing to ingest." Do not proceed to Step 3. This is expected on fresh clones, low-activity weeks, or when the user hasn't yet enabled Gemini Notes / Meet recording.
 
 ### Step 3 — Extract transcript content
 
@@ -151,6 +153,8 @@ Merge extracted content into the existing structure:
 
 ## Notes
 
+- **No emails found is normal**, not a failure. Report cleanly and exit.
+- **Gmail label structure is not assumed** — this skill reads message *bodies*, not labels. It works on any Gmail account that receives Gemini Notes or Google Meet transcript emails.
 - **Never paste the raw transcript** — not inline, not in callouts, not collapsed. Synthesize only.
 - **Ownership classification:** apply tier mapping. Not every action discussed is the user's. Only items where the user is the named owner or clearly responsible get checkboxes. Everyone else's go under "Action Items (Others)".
 - Wikilink all people and projects.

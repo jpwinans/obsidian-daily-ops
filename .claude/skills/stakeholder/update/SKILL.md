@@ -24,7 +24,7 @@ The list of recognized audiences comes from `vault-config.conventions.stakeholde
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `vault.layout`, `personTiers`, `directReports`, `stakeholders`, `projects`, `conventions`.
+1. Load `vault-config` for `vault.layout`, `personTiers`, `directReports`, `stakeholders`, `projects`, `conventions`. Apply the documented `vault-config` contract.
 2. Load `obsidian-markdown` for syntax.
 
 ### Step 2 — Gather source material

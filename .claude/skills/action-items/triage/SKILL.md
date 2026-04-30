@@ -39,7 +39,7 @@ Plus a Phase 2 vault write-back — after the browser session, the page emits a 
 
 ### 1. Read context + backlog
 
-1. Load `vault-config` for `personTiers`, `vault.layout`. Identify Tier 1-2 people (the user's manager and skip-level) — these drive the BossBoost.
+1. Load `vault-config` for `personTiers`, `vault.layout`. Apply the documented `vault-config` contract. Identify Tier 1-2 people (the user's manager and skip-level) — these drive the BossBoost.
 2. Open `📋 Action Items.md` at vault root.
    - **If the file does not exist:** stop with a clear message: "No `📋 Action Items.md` at vault root yet. Run `/action-items:compress` first to consolidate vault tasks into a ranked backlog, then re-run this skill."
    - **If it exists but has no open tasks:** stop and report "Backlog is empty — nothing to triage."

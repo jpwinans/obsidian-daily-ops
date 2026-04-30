@@ -23,7 +23,7 @@ Action items scatter across daily notes, meeting notes, 1:1s, project plans, and
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `vault.layout`, `personTiers`, `conventions`.
+1. Load `vault-config` for `vault.layout`, `personTiers`, `conventions`. Apply the documented `vault-config` contract.
 2. Load `obsidian-markdown` for formatting.
 3. If `📋 Action Items.md` already exists at vault root, read it and ask the user before overwriting.
 

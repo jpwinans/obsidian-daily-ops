@@ -21,7 +21,7 @@ No arguments. Uses today's date.
 
 ### Step 1 — Read context + action-items file
 
-1. Load `vault-config` for `vault.layout` (root path) and `conventions`.
+1. Load `vault-config` for `vault.layout` (root path) and `conventions`. Apply the documented `vault-config` contract.
 2. Read `📋 Action Items.md` at vault root. Expected structure:
    - `## 🎯 This Week` — manually curated weekly focus (≤5 items)
    - `## Open` with `### Strategic`, `### Operational`, `### Relational`

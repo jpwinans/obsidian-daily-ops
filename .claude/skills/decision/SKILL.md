@@ -22,9 +22,9 @@ Create a numbered ADR from the conversation context.
 
 ### Step 1 — Read context
 
-1. Load `vault-config` for `vault.layout` (specifically `vault.layout.adrs`, default `Atlas/Engineering`).
+1. Load `vault-config` for `vault.layout` (specifically `vault.layout.adrs`, default `Atlas/Engineering`). Apply the documented `vault-config` contract.
 2. Load `obsidian-markdown` for syntax.
-3. Read the ADR template at `<vault.layout.templates>/ADR.md`.
+3. Read the ADR template at `<vault.layout.templates>/ADR.md`. If missing, fall back to a minimal inline ADR template covering Status / Context / Decision / Alternatives / Consequences.
 
 ### Step 2 — Determine next ADR number
 
