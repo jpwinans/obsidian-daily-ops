@@ -14,7 +14,7 @@ allowed-tools: >
   mcp__claude_ai_Slack__slack_search_public_and_private
 ---
 
-# /blocker:scan — Risk detection
+# /blocker-scan — Risk detection
 
 Scan Slack channels and vault state for blockers, risks, and items needing attention. Output a structured risk digest to stdout. Does not write to any file.
 

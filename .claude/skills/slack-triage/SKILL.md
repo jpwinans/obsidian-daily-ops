@@ -4,7 +4,7 @@ description: |
   Encapsulates Slack triage logic — ownership classification (action /
   awareness / skip), age-tier bucketing (Stale >72h, Aging >48h, Recent
   <24h, Fresh), and cross-referencing flagged items to vault entities.
-  Auto-loaded by /morning:start, /morning:brief, /blocker:scan.
+  Auto-loaded by /morning-start, /morning-brief, /blocker-scan.
 user-invocable: false
 model: inherit
 allowed-tools: >

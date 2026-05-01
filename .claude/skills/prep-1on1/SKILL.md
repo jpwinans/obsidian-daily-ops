@@ -15,7 +15,7 @@ allowed-tools: >
   mcp__claude_ai_Notion__notion-fetch
 ---
 
-# /prep:1on1 — 1:1 prep for a named person
+# /prep-1on1 — 1:1 prep for a named person
 
 Gather context and produce a 30-minute-ready 1:1 note: agenda at the top, research below the fold.
 

@@ -11,7 +11,7 @@ argument-hint: "[YYYY-Www or YYYY-MM-DD] (defaults to last completed week)"
 allowed-tools: Read Write Glob Grep
 ---
 
-# /rollup:weekly — Weekly retrospective
+# /rollup-weekly — Weekly retrospective
 
 Aggregate the week's activity into a structured weekly review.
 
@@ -48,7 +48,7 @@ Read all relevant notes from the week:
 4. **Project status:** read active project notes from `<vault.layout.projects>/`.
 5. **OKR status:** read `<vault.layout.outcomes>/Current OKRs.md` if it exists.
 
-**If zero source notes are found across all of the above** (fresh clone, vacation week, vault used only sporadically), stop here and report: "No vault activity in the week of [Mon date] – [Fri date]. Nothing to roll up. Run `/morning:start` and `/rollup:daily` during the week to populate daily notes that this skill can aggregate." Do not write an empty weekly review.
+**If zero source notes are found across all of the above** (fresh clone, vacation week, vault used only sporadically), stop here and report: "No vault activity in the week of [Mon date] – [Fri date]. Nothing to roll up. Run `/morning-start` and `/rollup-daily` during the week to populate daily notes that this skill can aggregate." Do not write an empty weekly review.
 
 ### Step 4 — Extract and categorize
 

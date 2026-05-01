@@ -3,7 +3,7 @@ name: morning-brief
 description: |
   Lighter morning briefing. Scans vault state and overnight Slack only —
   no Gmail triage, no risk-digest deep dive. Use when you want a fast
-  start-of-day summary without the full /morning:start synthesis.
+  start-of-day summary without the full /morning-start synthesis.
   Triggers: "quick morning brief", "lighter daily briefing", "/morning brief".
 model: claude-sonnet-4-6
 allowed-tools: >
@@ -13,9 +13,9 @@ allowed-tools: >
   mcp__claude_ai_Notion__notion-search
 ---
 
-# /morning:brief — Lighter daily briefing
+# /morning-brief — Lighter daily briefing
 
-A faster, narrower version of `/morning:start`. Use when you want overnight Slack signal + vault state (tasks, blockers, stale relationships) without the full risk digest or email triage.
+A faster, narrower version of `/morning-start`. Use when you want overnight Slack signal + vault state (tasks, blockers, stale relationships) without the full risk digest or email triage.
 
 ## Input
 
@@ -91,7 +91,7 @@ Structure:
 
 ### Step 7 — Write the daily note
 
-Same insertion rules as `/morning:start`: insert Morning Briefing after frontmatter, preserve existing content.
+Same insertion rules as `/morning-start`: insert Morning Briefing after frontmatter, preserve existing content.
 
 ### Step 8 — Stdout summary
 
@@ -104,6 +104,6 @@ Same insertion rules as `/morning:start`: insert Morning Briefing after frontmat
 
 ## Notes
 
-- Same "ownership classification" rule as `/morning:start` — never present someone else's task as the user's.
+- Same "ownership classification" rule as `/morning-start` — never present someone else's task as the user's.
 - Use wikilinks for vault references. People as `[[@Name]]`.
 - The briefing should be scannable in under 90 seconds.

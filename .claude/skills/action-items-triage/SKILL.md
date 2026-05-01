@@ -12,7 +12,7 @@ model: claude-sonnet-4-6
 allowed-tools: Read Write Bash Glob Grep
 ---
 
-# /action-items:triage — Interactive prune / focus / balance ritual
+# /action-items-triage — Interactive prune / focus / balance ritual
 
 Build an interactive triage page that walks through three stages — prune, focus, balance — against the consolidated backlog at `📋 Action Items.md`. Then, after the user finishes in the browser, apply the decisions back to the vault.
 
@@ -41,7 +41,7 @@ Plus a Phase 2 vault write-back — after the browser session, the page emits a 
 
 1. Load `vault-config` for `personTiers`, `vault.layout`. Apply the documented `vault-config` contract. Identify Tier 1-2 people (the user's manager and skip-level) — these drive the BossBoost.
 2. Open `📋 Action Items.md` at vault root.
-   - **If the file does not exist:** stop with a clear message: "No `📋 Action Items.md` at vault root yet. Run `/action-items:compress` first to consolidate vault tasks into a ranked backlog, then re-run this skill."
+   - **If the file does not exist:** stop with a clear message: "No `📋 Action Items.md` at vault root yet. Run `/action-items-compress` first to consolidate vault tasks into a ranked backlog, then re-run this skill."
    - **If it exists but has no open tasks:** stop and report "Backlog is empty — nothing to triage."
    - Otherwise, parse every open task (`- [ ]`) in the `## Open` section, grouped by Work Type (Strategic / Operational / Relational).
 3. Parse `## Waiting On Others` (these get a `waiting: true` flag — shown in triage but default to "Keep" with a different UI treatment) and `## Someday / Maybe` (`someday: true` — only in a collapsed drawer, not surfaced for triage).
@@ -242,7 +242,7 @@ Report a one-line summary per action: "Kept 22 · Deferred 8 · Delegated 4 · C
 
 - **Empty backlog.** Say so plainly — no HTML generated.
 - **No open tasks in one work type.** Hide that column in Balance; don't break layout.
-- **Duplicate task text after `/action-items:compress`.** Shouldn't happen, but if it does: use the first occurrence and skip the rest; warn the user.
+- **Duplicate task text after `/action-items-compress`.** Shouldn't happen, but if it does: use the first occurrence and skip the rest; warn the user.
 - **Task has no due date.** DeadlineBoost = 0; rely on BASE and other boosts.
 - **Focus cap conflict.** If the user picks 6 focus tasks in HTML, the page blocks the 6th with "cap = 5." In Phase 2, trust the JSON — if 6 come through, apply the first 5 and warn.
 - **Decision JSON references a task id not in current Action Items.md.** Skip with a warning. Don't fail the batch.

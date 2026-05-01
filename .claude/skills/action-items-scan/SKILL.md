@@ -9,7 +9,7 @@ model: claude-haiku-4-5
 allowed-tools: Read Edit Glob Grep
 ---
 
-# /action-items:scan — Open task triage by age
+# /action-items-scan — Open task triage by age
 
 Read `📋 Action Items.md`, present open tasks organized by urgency. Oldest and most overdue first, so the user can orient quickly.
 

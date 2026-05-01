@@ -14,7 +14,7 @@ allowed-tools: >
   mcp__claude_ai_Notion__notion-fetch
 ---
 
-# /prep:meeting — Meeting prep with context
+# /prep-meeting — Meeting prep with context
 
 Gather context from vault, Slack, and Notion. Produce a pre-populated meeting note ready for live capture.
 

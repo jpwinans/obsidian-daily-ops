@@ -14,7 +14,7 @@ allowed-tools: >
   mcp__claude_ai_Gmail__gmail_read_message
 ---
 
-# /gmail:triage — GTD inbox triage
+# /gmail-triage — GTD inbox triage
 
 Read the Gmail inbox, classify each thread by ownership and sender importance, recommend GTD labels.
 
@@ -24,7 +24,7 @@ No arguments. Scans the inbox by default.
 
 ## Why this skill exists
 
-Email is the noisiest input. Most inbox messages are FYI, automated, or someone else's action item. Use this to surface the 3–5 emails that actually need a direct response or decision — and ignore the rest. Same ownership-classification logic as `/morning:start` and `/blocker:scan`, applied to email.
+Email is the noisiest input. Most inbox messages are FYI, automated, or someone else's action item. Use this to surface the 3–5 emails that actually need a direct response or decision — and ignore the rest. Same ownership-classification logic as `/morning-start` and `/blocker-scan`, applied to email.
 
 ## Instructions
 
@@ -105,7 +105,7 @@ This lets the user act immediately on the highest-priority items.
 ## Notes
 
 - **Read-only.** The Gmail MCP usually cannot apply labels — recommend, the user applies manually.
-- **Ownership classification is key.** Not every email TO the user is FOR the user. Apply the same "who is being asked?" logic as `/morning:start`.
+- **Ownership classification is key.** Not every email TO the user is FOR the user. Apply the same "who is being asked?" logic as `/morning-start`.
 - **Don't over-classify as Next Action.** GTD works because the Next Actions list is short. If everything is a Next Action, nothing is. Err toward Reference when in doubt.
 - **Automated messages are never Next Actions.** Jira notifications, GitHub PRs, deploy alerts, calendar invites without prep, newsletters → archive or reference.
 - **Respect the tiers.** A vague FYI from a Tier 1-2 person is still worth flagging; a direct ask from an unknown sender isn't necessarily urgent.

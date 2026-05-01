@@ -10,7 +10,7 @@ argument-hint: "[manager | team | leadership | all] (defaults to all)"
 allowed-tools: Read Glob Grep
 ---
 
-# /stakeholder:update — Drafted updates for stakeholder audiences
+# /stakeholder-update — Drafted updates for stakeholder audiences
 
 Generate audience-appropriate status updates from the week's activity and project status.
 
@@ -114,7 +114,7 @@ After outputting, note: "These drafts are ready for your review. When you're sat
 
 - Output to stdout only — does not auto-send.
 - Wikilinks for internal vault references. People as `[[@Person]]`.
-- If no weekly review exists yet, note this and suggest running `/rollup:weekly` first.
+- If no weekly review exists yet, note this and suggest running `/rollup-weekly` first.
 - Adapt tone to audience: executive for leadership, candid for manager, motivating for team.
 - Omit sections with no content rather than leaving them empty.
 - If a custom audience name (not `manager`/`team`/`leadership`) is passed, treat it as a manager-style update aimed at the named role and ask for clarification if the name doesn't map to anyone in `personTiers`.

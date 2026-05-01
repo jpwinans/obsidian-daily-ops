@@ -20,7 +20,7 @@ allowed-tools: >
   mcp__claude_ai_Google_Drive__download_file_content
 ---
 
-# /meeting:ingest — Process meeting transcripts into vault notes
+# /meeting-ingest — Process meeting transcripts into vault notes
 
 Find transcript emails in Gmail, extract content, and populate or enrich the corresponding vault meeting note. Never paste raw transcripts — use them only as source material.
 
@@ -74,7 +74,7 @@ From the email subject, body, and transcript:
 
 ### Step 5 — Classify meeting type
 
-Same logic as `/prep:day`:
+Same logic as `/prep-day`:
 - **1-1:** title contains `1:1`, `1-1`, `1 on 1`, OR exactly 2 attendees (user + one person)
 - **Recurring:** `<vault.layout.meetings>/[Name]/` exists with prior instances AND not 1-1
 - **Ad hoc:** no prior vault folder AND not 1-1
@@ -88,9 +88,9 @@ Same logic as `/prep:day`:
 If the note exists, read it — proceed to Step 7 to enrich.
 
 If it doesn't exist, invoke the appropriate prep skill first:
-- 1-1 → `prep:1on1` with the person's name
-- Recurring → `prep:meeting` with the meeting name
-- Ad hoc → `prep:meeting` with `[Meeting Name] | as Ad Hoc`
+- 1-1 → `prep-1on1` with the person's name
+- Recurring → `prep-meeting` with the meeting name
+- Ad hoc → `prep-meeting` with `[Meeting Name] | as Ad Hoc`
 
 After prep creates the note, read it before Step 7.
 

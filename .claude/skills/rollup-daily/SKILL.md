@@ -11,7 +11,7 @@ argument-hint: "[YYYY-MM-DD or 'yesterday'] (defaults to today)"
 allowed-tools: Read Write Edit Glob Grep
 ---
 
-# /rollup:daily — End-of-day reconciliation
+# /rollup-daily — End-of-day reconciliation
 
 Transform the daily note from a morning plan into a complete record of the day. Update every section with what actually happened.
 
@@ -33,7 +33,7 @@ Resolve `$ARGUMENTS` to `YYYY-MM-DD`. Empty → today.
 
 ### Step 3 — Run meeting transcript ingest (optional)
 
-If a `meeting:ingest` skill is installed (it ships with this suite), invoke it with a 1-day lookback (or wider for past dates) so vault meeting notes are enriched with transcript content before reading them.
+If a `meeting-ingest` skill is installed (it ships with this suite), invoke it with a 1-day lookback (or wider for past dates) so vault meeting notes are enriched with transcript content before reading them.
 
 Wait for ingest to complete. If it finds no new transcripts, note that briefly and continue.
 

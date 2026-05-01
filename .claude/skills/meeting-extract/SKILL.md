@@ -11,7 +11,7 @@ argument-hint: "[path/to/raw-note.md]"
 allowed-tools: Read Write Edit Glob Grep
 ---
 
-# /meeting:extract — Restructure raw notes
+# /meeting-extract — Restructure raw notes
 
 Transform a raw meeting note or transcript into a structured, actionable note matching the standard quality pattern.
 

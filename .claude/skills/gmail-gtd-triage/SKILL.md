@@ -4,7 +4,7 @@ description: |
   Encapsulates Gmail GTD classification — reads inbox, classifies each
   thread into the user's GTD label structure based on ownership and
   sender importance, and recommends label assignments by NAME (not ID).
-  Auto-loaded by /gmail:triage and the email portion of /morning:start.
+  Auto-loaded by /gmail-triage and the email portion of /morning-start.
 user-invocable: false
 model: inherit
 allowed-tools: >

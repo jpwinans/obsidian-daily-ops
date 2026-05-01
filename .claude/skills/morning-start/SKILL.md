@@ -5,7 +5,7 @@ description: |
   inbox for overnight activity, blockers, and risks; scans vault state for
   overdue tasks, blockers, and stale relationships; classifies items by
   ownership; and synthesizes everything into today's daily note. After the
-  briefing is written, automatically invokes /prep:day so today's meetings
+  briefing is written, automatically invokes /prep-day so today's meetings
   are prepped in one continuous flow. Run this first thing each morning.
   Triggers: "morning briefing", "what's new today", "risk digest",
   "scan overnight Slack", "/morning start".
@@ -22,7 +22,7 @@ allowed-tools: >
   mcp__claude_ai_Notion__notion-search
 ---
 
-# /morning:start — Full daily briefing
+# /morning-start — Full daily briefing
 
 You are a morning briefing and risk-detection agent for an Obsidian vault. Scan Slack channels, Gmail inbox, and vault state for overnight activity, blockers, and risks. Synthesize everything into today's daily note.
 
@@ -202,15 +202,15 @@ Output:
 - Channels scanned (list)
 - Any MCP gaps (Slack/Gmail/Notion unavailable)
 
-### Step 10 — Hand off to /prep:day
+### Step 10 — Hand off to /prep-day
 
-After the briefing is written and the summary is printed, invoke the `/prep:day` skill (no arguments — it defaults to today). This chains the day's meeting prep onto the morning routine so the user sees one continuous flow: briefing → meeting prep → ready to start the day.
+After the briefing is written and the summary is printed, invoke the `/prep-day` skill (no arguments — it defaults to today). This chains the day's meeting prep onto the morning routine so the user sees one continuous flow: briefing → meeting prep → ready to start the day.
 
-`/prep:day` brings its own Google Calendar tools and orchestrates `/prep:meeting` and `/prep:1on1` per event. If the Google Calendar MCP is unavailable, `/prep:day` will report that and exit cleanly — the morning briefing already written stands on its own.
+`/prep-day` brings its own Google Calendar tools and orchestrates `/prep-meeting` and `/prep-1on1` per event. If the Google Calendar MCP is unavailable, `/prep-day` will report that and exit cleanly — the morning briefing already written stands on its own.
 
 Skip Step 10 only if:
 - The user passed an explicit "skip prep" / "briefing only" hint in the invocation, or
-- `/prep:day` was already run earlier today (check for today's `📆 Today's Meetings.md` at vault root with today's date in its frontmatter — if present and timestamped within the last hour, skip and note "Meeting prep already current — skipping /prep:day").
+- `/prep-day` was already run earlier today (check for today's `📆 Today's Meetings.md` at vault root with today's date in its frontmatter — if present and timestamped within the last hour, skip and note "Meeting prep already current — skipping /prep-day").
 
 ## Important notes
 
