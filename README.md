@@ -56,7 +56,7 @@ Once you're set up, the whole rig runs on **two commands**:
 
 **Friday end of day:** add `/rollup-weekly` after `/rollup-daily` to close out the week.
 
-That's the whole loop. The other 16+ skills are opportunistic — see [Recommended daily routine](#recommended-daily-routine) below for when to reach for them.
+That's the whole loop. The other 16+ skills are opportunistic — see the **Recommended daily routine** section below for when to reach for them.
 
 ---
 
