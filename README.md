@@ -111,6 +111,44 @@ Every workflow skill reads your `CLAUDE.md`. The `vault-config` helper parses th
 
 ---
 
+## Recommended daily routine
+
+The skills are designed for a two-touch day: one command in the morning, one at end of day. Most everything else slots in opportunistically.
+
+### Daily
+
+| When | Command | What you get |
+|------|---------|--------------|
+| **Start of day** | `/morning-start` | Scans Slack (24h on weekdays / 72h on Mondays), Gmail inbox, vault state. Writes today's daily note with risk digest, ownership-classified items, top-3 priorities, deploy status, email triage. **Auto-chains into `/prep-day`** which reads your calendar, classifies each meeting (1-1 / recurring / ad-hoc / ignore), and runs prep skills per event. By the time it finishes, your daily note + every meeting note is ready. |
+| **During day, ad hoc** | `/meeting-extract <path>` | If you took raw notes during a meeting, restructures them into the standard template (Context / Discussion / Decisions / Action Items / Observations) with people and projects backlinked. |
+| **End of day** | `/rollup-daily` | Auto-runs `/meeting-ingest` first (pulls Gemini Notes / Google Meet transcript emails from Gmail and enriches the corresponding vault meeting notes). Then reconciles morning plan vs reality across every section of today's daily note (tasks done/deferred/moot, focus achieved, meetings logged, EOD summary). |
+
+### Weekly
+
+| When | Command | What you get |
+|------|---------|--------------|
+| **Monday morning** (after `/morning-start`) | `/action-items-triage` | Interactive HTML page for prune / focus / balance. Pick 3–5 rocks for the week. |
+| **Friday end of day** | `/rollup-daily` then `/rollup-weekly` | Closes today, then aggregates the whole week's activity into a structured retrospective. |
+| **Sunday or Monday before the week opens** | `/stakeholder-update` | Drafts audience-specific status updates from the latest weekly review. |
+
+### Less frequent
+
+- **Weekly or before a triage session:** `/action-items-compress` — heavy. Walks the whole vault, deduplicates tasks, scores by priority, writes consolidated `📋 Action Items.md`. Asks before writing.
+- **Monthly:** `/refresh-vault` — drift + DRY auditor. Detects older notes contradicting newer ones. **Note:** has minimal value on a fresh clone (under ~10 notes); save for once your vault has accumulated content.
+- **Quarterly:** `/hyper-explore-vault` — deep multi-agent vault audit. Heavy.
+
+### The 80% case
+
+```
+Morning:        /morning-start            ← briefing + meeting prep, all in one
+End of day:     /rollup-daily             ← ingest transcripts + reconcile
+Friday EOD:     /rollup-daily, /rollup-weekly
+```
+
+That's the skeleton. Everything else slots in when you need it.
+
+---
+
 ## Troubleshooting
 
 **`/morning-start` says "no channels configured"** — Add a `## Channels` section to your CLAUDE.md with at least one `#channel-name` bullet.

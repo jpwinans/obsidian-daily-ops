@@ -37,7 +37,7 @@ Run a bash command to list every `.md` file (excluding `.claude/`, `.trash/`, `_
 find . -name "*.md" -not -path "./.claude/*" -not -path "./.trash/*" -not -path "./_Meta/Templates/*" -printf "%T@ %p\n" | sort -rn
 ```
 
-**If the find returns fewer than ~20 files** (fresh clone, brand-new vault), this skill's drift/DRY detection has nothing to compare against. Report "Vault is too small for a meaningful consistency audit yet — come back once you have ~20+ notes" and exit.
+**If the find returns fewer than 8 files** (essentially empty vault), this skill has nothing to compare against. Report "Vault is too small for a meaningful consistency audit yet — come back once you have ~10+ notes" and exit. For vaults between 8 and 20 files, run normally but expect sparse output — drift detection improves as cross-references accumulate.
 
 Group into three tiers:
 - **Tier 1 (Source of Truth):** modified in the last 24 hours
