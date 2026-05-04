@@ -85,10 +85,9 @@ Standard ACE layout — see `_Meta/Templates/` for note templates. No folder ove
 - **Person notes:** `People/@First Last.md`
 - **Frontmatter required on every note:** `date`, `tags`, `status`, `related`
 - **Status values:** `draft`, `active`, `review`, `complete`, `archived`
-- **Tags:** `#meeting`, `#decision`, `#blocker`, `#idea`, `#adr`, `#1-1`
+- **Tags:** `#meeting`, `#decision`, `#blocker`, `#idea`, `#1-1`
 - **Task format:** `- [ ] Task @context #tag 📅 YYYY-MM-DD ⏫`
 - **Task contexts:** `@meeting`, `@review`, `@blocked`, `@delegate`, `@discuss`
-- **ADR numbering:** sequential (`Atlas/Engineering/ADR-001 Title.md`)
 - **Meeting ignore patterns:** `Lunch`, `Focus Time`, `Block`, `OOO`, `Hold`
 - **Stakeholder audiences:** `manager`, `team`, `leadership`
 

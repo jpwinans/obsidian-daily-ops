@@ -34,7 +34,7 @@ One-paragraph summary of what this project is and why it matters.
 
 ```dataview
 LIST
-FROM #adr
+FROM #decision
 WHERE contains(related, this.file.name)
 SORT date DESC
 ```

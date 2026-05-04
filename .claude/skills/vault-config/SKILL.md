@@ -45,8 +45,7 @@ Optional. Free-form prose describing folder layout. If overrides are documented 
   people: "People",
   teams: "People/Teams",
   archive: "Archive",
-  templates: "_Meta/Templates",
-  adrs: "Atlas/Engineering"
+  templates: "_Meta/Templates"
 }
 ```
 

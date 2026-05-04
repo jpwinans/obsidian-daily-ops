@@ -92,7 +92,6 @@ _Meta/          Templates
 | `/action-items-compress` | Consolidates duplicate action items across the vault |
 | `/action-items-triage` | Interactive HTML triage view (Prune / Focus / Balance) |
 | `/blocker-scan` | Risk digest — Slack + vault, classified by ownership and age |
-| `/decision` | Creates a numbered ADR in `Atlas/Engineering/` |
 | `/refresh-vault` | Detects information drift and DRY violations across the vault |
 | `/hyper-explore-vault` | Multi-agent vault audit (structural health, gaps, hidden threads) |
 
@@ -184,8 +183,6 @@ Everything else slots in when you need it — most days you don't.
 **Skills don't appear in the slash menu** — Make sure you launched Claude Code from the vault directory (the one with `.claude/` in it). Helper skills like `vault-config` are intentionally hidden from the menu.
 
 **Daily note ends up in the wrong folder** — Override `## Conventions` → "Daily note path" in CLAUDE.md.
-
-**`/decision` puts ADRs somewhere weird** — Override `## Vault Layout` to point at your preferred ADR folder.
 
 ---
 

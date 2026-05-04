@@ -9,13 +9,13 @@ status: active
 
 Map of Content for engineering knowledge in this vault. Update as new notes get created.
 
-## Architecture & Decisions
+## Decisions
 
 ```dataview
 LIST
-FROM "Atlas/Engineering"
-WHERE contains(tags, "adr") OR contains(tags, "decision")
+FROM #decision
 SORT date DESC
+LIMIT 20
 ```
 
 ## Active Projects

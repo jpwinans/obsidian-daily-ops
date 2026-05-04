@@ -16,7 +16,7 @@ The daily-workflow skills (morning, prep, rollup, etc.) read the sections below 
 ```
 + Inbox/                → Quick capture, unprocessed items
 Atlas/                  → Knowledge base
-  Engineering/          → Systems design, ADRs
+  Engineering/          → Systems design, technical knowledge
   Leadership/           → Org Chart
   MOCs/                 → Maps of Content
 Calendar/               → Time-based notes
@@ -106,7 +106,7 @@ Used by `/morning:start`, `/prep:meeting`, `/prep:1on1` to cross-reference. Skip
 - **Team notes:** `People/Teams/Team Name.md` (no `@` prefix)
 - **Frontmatter required on every note:** `date`, `tags`, `status`, `related`
 - **Status values:** `draft`, `active`, `review`, `complete`, `archived`
-- **Tags:** `#meeting`, `#decision`, `#blocker`, `#idea`, `#adr`, `#1-1`
+- **Tags:** `#meeting`, `#decision`, `#blocker`, `#idea`, `#1-1`
 - **Task format:**
   ```
   - [ ] Task description @context #tag 📅 YYYY-MM-DD
@@ -114,7 +114,6 @@ Used by `/morning:start`, `/prep:meeting`, `/prep:1on1` to cross-reference. Skip
   - [ ] Medium priority task 🔼 📅 YYYY-MM-DD
   ```
 - **Task contexts:** `@meeting`, `@review`, `@blocked`, `@delegate`, `@discuss`
-- **ADR numbering:** sequential (`Atlas/Engineering/ADR-001 Title.md`)
 - **Meeting ignore patterns:** `Lunch`, `Focus Time`, `Block`, `OOO` — skipped by `/prep:day`
 - **Stakeholder audiences:** `manager`, `team`, `leadership` — used by `/stakeholder:update`
 
