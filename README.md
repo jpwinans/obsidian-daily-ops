@@ -43,6 +43,23 @@ A self-contained Obsidian vault and Claude Code skill pack for running your day:
 
 ---
 
+## Your daily flow at a glance
+
+Once you're set up, the whole rig runs on **two commands**:
+
+```
+☀️  Start of day:   /morning-start    ← briefing + meeting prep, all in one
+🌙  End of day:     /rollup-daily     ← ingest meeting transcripts + reconcile
+```
+
+`/morning-start` auto-chains into `/prep-day` (calendar read + per-meeting prep notes). `/rollup-daily` auto-chains into `/meeting-ingest` (pulls Gemini Notes / Google Meet transcripts from Gmail and enriches the day's meeting notes). You don't run those four sub-skills directly.
+
+**Friday end of day:** add `/rollup-weekly` after `/rollup-daily` to close out the week.
+
+That's the whole loop. The other 16+ skills are opportunistic — see [Recommended daily routine](#recommended-daily-routine) below for when to reach for them.
+
+---
+
 ## What's in the box
 
 ### The vault (ACE framework)
