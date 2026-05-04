@@ -75,7 +75,6 @@ _Meta/          Templates
 | `/action-items-compress` | Consolidates duplicate action items across the vault |
 | `/action-items-triage` | Interactive HTML triage view (Prune / Focus / Balance) |
 | `/blocker-scan` | Risk digest — Slack + vault, classified by ownership and age |
-| `/stakeholder-update` | Drafts audience-specific status updates |
 | `/decision` | Creates a numbered ADR in `Atlas/Engineering/` |
 | `/refresh-vault` | Detects information drift and DRY violations across the vault |
 | `/hyper-explore-vault` | Multi-agent vault audit (structural health, gaps, hidden threads) |
@@ -139,7 +138,6 @@ If all your meetings are Gemini- or Meet-transcribed, the EOD `/rollup-daily` co
 |------|---------|--------------|
 | **Monday morning** (after `/morning-start`) | `/action-items-triage` | Interactive HTML page for prune / focus / balance. Pick 3–5 rocks for the week. |
 | **Friday end of day** | `/rollup-daily` then `/rollup-weekly` | Closes today, then aggregates the whole week's activity into a structured retrospective. |
-| **Sunday or Monday before the week opens** | `/stakeholder-update` | Drafts audience-specific status updates from the latest weekly review. |
 
 ### Less frequent
 
