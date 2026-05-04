@@ -99,7 +99,7 @@ _Meta/          Templates
 
 - `vault-config` — parses your CLAUDE.md schema
 - `slack-triage` — ownership classification + age tiering
-- `gmail-gtd-triage` — GTD label classification
+- `gmail-classifier` — inbox classification by ownership + sender importance
 - `meeting-notes` — meeting note format + transcript extraction
 
 **Generic Obsidian-format skills:**
@@ -118,7 +118,7 @@ Every workflow skill reads your `CLAUDE.md`. The `vault-config` helper parses th
 - `## People` — importance tiers, direct reports, key stakeholders
 - `## Channels (Slack)` — daily-pulse, deploy/alerts, leadership channels
 - `## Projects / Initiatives` — active work to cross-reference
-- `## Gmail GTD Labels` — your label hierarchy by name
+- `## Gmail Labels` — your label hierarchy by name
 - `## Notion` — optional reference page list
 - `## Conventions` — daily-note path, frontmatter, task format, ignore patterns
 
@@ -216,7 +216,7 @@ Everything else slots in when you need it — most days you don't.
 
 **Slack search isn't finding a channel by name** — That channel probably needs an explicit ID. Add it as `#channel-name (ID: C0XXXXXX)` in CLAUDE.md. To find a channel ID: open it in the Slack desktop app, click the channel name → Copy ID.
 
-**Gmail labels don't match** — The skills use label *names*, not IDs. Whatever you write in `## Gmail GTD Labels` is what they look for. If your labels are nested differently (e.g., `Inbox/Action`), just write that.
+**Gmail labels don't match** — The skills use label *names*, not IDs. Whatever you write in `## Gmail Labels` is what they look for. If your labels are nested differently (e.g., `Inbox/Action`), just write that.
 
 **Skills don't appear in the slash menu** — Make sure you launched Claude Code from the vault directory (the one with `.claude/` in it). Helper skills like `vault-config` are intentionally hidden from the menu.
 

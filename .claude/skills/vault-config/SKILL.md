@@ -2,7 +2,7 @@
 name: vault-config
 description: |
   Parses the user's CLAUDE.md schema (## People, ## Channels, ## Projects,
-  ## Gmail GTD Labels, ## Vault Layout, ## Conventions) into a structured
+  ## Gmail Labels, ## Vault Layout, ## Conventions) into a structured
   config object that other skills consume. Auto-loaded by every workflow
   skill in the suite. Returns sensible defaults for missing sections.
 user-invocable: false
@@ -12,7 +12,7 @@ allowed-tools: Read
 
 # vault-config — CLAUDE.md schema parser
 
-You are a configuration parser. Other skills load you when they need to know who's important to the user, which Slack channels to scan, which GTD labels exist, or where notes live in the vault.
+You are a configuration parser. Other skills load you when they need to know who's important to the user, which Slack channels to scan, which Gmail labels exist, or where notes live in the vault.
 
 ## When to use this skill
 
@@ -78,10 +78,10 @@ If the section is missing entirely, return `channels: {}` and a `warnings` entry
 ### `## Projects / Initiatives`
 Optional. Parse bullets as `[{ name, description, dashboardPath? }]`. Skills use these to cross-reference Slack/email mentions to active work.
 
-### `## Gmail GTD Labels`
-Required for the email-triage portion of `/morning-start`. Parse bullets as `[{ label, purpose }]`. The `label` is the backticked string (e.g., `📥 GTD/1 - Next Actions/@Email`); `purpose` is the text after the `—`.
+### `## Gmail Labels`
+Required for the email-triage portion of `/morning-start`. Parse bullets as `[{ label, purpose }]`. The `label` is the backticked string (e.g., `Action/Reply`); `purpose` is the text after the `—`.
 
-If missing, return `labels: []` and a warning: "No `## Gmail GTD Labels` section — `/morning-start` will skip its email-triage section."
+If missing, return `labels: []` and a warning: "No `## Gmail Labels` section — `/morning-start` will skip its email-triage section."
 
 ### `## Notion`
 Optional. Parse `[Page Title](url) — what's there` bullets as `[{ title, url, description }]`. Used for cross-reference lookups.
@@ -135,7 +135,7 @@ Never invent data. If the user wrote `TODO` or left placeholders, treat them as 
 Every workflow skill that loads `vault-config` should:
 
 1. **On `status: "missing"`** — stop the skill immediately and surface this exact message to the user:
-   > "No `CLAUDE.md` at vault root. Copy `CLAUDE.md.template` to `CLAUDE.md`, fill in your people / channels / projects / GTD labels, then re-run this skill. See `CLAUDE.md.example` for a filled-out reference."
+   > "No `CLAUDE.md` at vault root. Copy `CLAUDE.md.template` to `CLAUDE.md`, fill in your people / channels / projects / Gmail labels, then re-run this skill. See `CLAUDE.md.example` for a filled-out reference."
 
 2. **On `status: "error"`** — stop and report the specific section that failed validation, with the expected format. Do not try to proceed with partial config for required sections.
 

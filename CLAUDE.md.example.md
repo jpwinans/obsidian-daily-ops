@@ -60,17 +60,16 @@ Standard ACE layout — see `_Meta/Templates/` for note templates. No folder ove
 - **Pipeline Modernization** — multi-quarter migration off legacy ETL. Dashboard: `Efforts/Projects/Pipeline Modernization/Dashboard.md`
 - **Platform SLO Initiative** — establishing SLOs for Core Platform services
 
-## Gmail GTD Labels
+## Gmail Labels
 
-- `📥 GTD/1 - Next Actions/@Email` — needs a reply
-- `📥 GTD/1 - Next Actions/@Computer` — computer task (form, review, training)
-- `📥 GTD/1 - Next Actions/@Agenda` — raise in a meeting
-- `📥 GTD/1 - Next Actions/@Calls` — make a call
-- `📥 GTD/2 - Waiting For` — ball in someone else's court
-- `📥 GTD/3 - Projects` — multi-step outcome
-- `📥 GTD/4 - Someday Maybe` — not urgent, review later
-- `📥 GTD/5 - Reference` — useful info, no action
-- `📥 GTD/6 - Delegated` — handed off, track completion
+- `Action/Reply` — needs a reply from you
+- `Action/Review` — review a doc, fill out a form, complete a task
+- `Action/Discuss` — raise in an upcoming meeting or 1:1
+- `Action/Call` — make a phone or video call
+- `Waiting` — ball in someone else's court
+- `Delegated` — handed off to someone, tracking completion
+- `Reference` — useful info, no action
+- `Someday` — not urgent, review later
 
 ## Notion
 
