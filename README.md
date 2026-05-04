@@ -18,7 +18,7 @@ A self-contained Obsidian vault and Claude Code skill pack for running your day:
 
 3. **Install Claude Code** if you don't have it: <https://docs.claude.com/code>.
 
-4. **Open Claude Code in the vault directory** and run **`/setup-vault`**.
+4. **(optionally) Open Claude Code in the vault directory** and run **`/setup-vault`**.
 
    The wizard walks you through every question needed to configure the vault — your name and role, the people who matter (CEO, manager, peers, direct reports, stakeholders), Slack channels you watch, active projects, Gmail labels, optional Notion pages. ~5–10 minutes of plain-English Q&A. It writes your `CLAUDE.md` for you at the end after showing you a preview.
 
