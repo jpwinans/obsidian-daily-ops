@@ -10,13 +10,13 @@ Your vault entry point. Fill this in over time as your work takes shape.
 ## This Week
 
 - See `Calendar/Weekly/` for the current weekly review
-- Run `/rollup:weekly` to generate a fresh one
+- Run `/rollup-weekly` to generate a fresh one
 
 ## Today
 
-- Run `/morning:start` first thing in the morning
-- Run `/prep:day` after that to prep upcoming meetings
-- Run `/rollup:daily` at end of day
+- Run `/morning-start` first thing in the morning
+- Run `/prep-day` after that to prep upcoming meetings
+- Run `/rollup-daily` at end of day
 
 ## Maps of Content
 
@@ -68,4 +68,4 @@ SORT file.ctime ASC
 - [ ] Connected Google Calendar MCP server
 - [ ] (Optional) Connected Notion MCP server
 - [ ] Created `People/@<your name>.md`
-- [ ] Tried `/morning:start`
+- [ ] Tried `/morning-start`

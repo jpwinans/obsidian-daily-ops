@@ -13,7 +13,7 @@ status: active
 > 2. **—**
 > 3. **—**
 
-*Run `/morning:brief` or `/morning:start` to auto-populate this section.*
+*Run `/morning-brief` or `/morning-start` to auto-populate this section.*
 
 ### Overdue Tasks
 

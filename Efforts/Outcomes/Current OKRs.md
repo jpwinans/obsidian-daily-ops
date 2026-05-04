@@ -21,4 +21,4 @@ quarter: Q1-2025
 
 ---
 
-`/rollup:weekly` reads this file when generating the weekly review. Each KR's status is what surfaces in the rollup.
+`/rollup-weekly` reads this file when generating the weekly review. Each KR's status is what surfaces in the rollup.
