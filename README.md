@@ -10,8 +10,8 @@ A self-contained Obsidian vault and Claude Code skill pack for running your day:
 
 1. **Clone the repo** to wherever you keep your Obsidian vaults.
    ```bash
-   git clone https://github.com/<you>/obsidian-daily-ops.git my-vault
-   cd my-vault
+   git clone https://github.com/jpwinans/obsidian-daily-ops.git <vault-name>
+   cd <vault-name>
    ```
 
 2. **Open the folder in Obsidian** as a vault. The folder tree is already set up.
@@ -150,11 +150,49 @@ If a meeting wasn't recorded by Gemini or Google Meet (in-person, untranscribed 
 | **Monday morning** (after `/morning-start`) | `/action-items-triage` | Interactive HTML page for prune / focus / balance. Pick 3–5 rocks for the week. |
 | **Friday end of day** | `/rollup-daily` then `/rollup-weekly` | Closes today, then aggregates the whole week's activity into a structured retrospective. |
 
-### Less frequent
+### Advanced usage
 
-- **Weekly or before a triage session:** `/action-items-compress` — heavy. Walks the whole vault, deduplicates tasks, scores by priority, writes consolidated `Action Items.md`. Asks before writing.
-- **Monthly:** `/refresh-vault` — drift + DRY auditor. Detects older notes contradicting newer ones. **Note:** has minimal value on a fresh clone (under ~10 notes); save for once your vault has accumulated content.
-- **Quarterly:** `/hyper-explore-vault` — deep multi-agent vault audit. Heavy.
+Skills outside the daily two-touch flow. Run on cadences that match what each one actually does — none of these belong in your daily routine.
+
+#### Action-items pipeline — three skills, one rhythm
+
+| Cadence | Skill | What it does |
+|---------|-------|--------------|
+| Once a week | `/action-items-compress` | Build the consolidated backlog |
+| Daily (cheap) | `/action-items-scan` | Quick "what's stale, what's due today" check |
+| Monday + ad hoc | `/action-items-triage` | Interactive prune / focus / balance ritual |
+
+**`/action-items-compress`** — heavy. Walks the entire vault, deduplicates every `- [ ]` task across daily notes / 1:1s / meeting notes / project notes / etc., scores each by priority (manager weight + commitment + deadline + people affected + blocker status), and writes the consolidated ranked backlog to `Action Items.md` at vault root. Demotes source tasks to breadcrumbs (`→ [[Action Items]]`) so there's a single source of truth. **Asks before overwriting** — review the proposed list before approving. Run weekly (Sunday night or Monday morning) or before a major triage session.
+
+**`/action-items-scan`** — cheap, runs on Haiku, ~30-second orientation. Reads `Action Items.md`, buckets open tasks by age (🔴 stale > 3 days overdue / 🟠 aging 1–3 days / 🟡 due today / 🟢 due this week / ℹ️ on the horizon). Updates only the scan-timestamp header in the file; output goes to stdout. Use whenever you want a quick read on what's slipping.
+
+**`/action-items-triage`** — interactive HTML page generated to vault root. Three tabs: **Triage** (per-task keep / defer / delegate / kill / complete decisions, keyboard-driven so it's fast), **Focus** (pick 3–5 rocks for `🎯 This Week`), **Balance** (portfolio view across Strategic / Operational / Relational work). Make decisions in the browser, then come back to Claude and say "apply decisions" — it writes the changes back to `Action Items.md` (defers update due dates, kills move to Completed with `#cancelled`, delegates add `@delegate [[@Person]]` and a follow-up note, focus repopulates the `🎯 This Week` section).
+
+The pipeline assumes `Action Items.md` exists. The seed file at vault root has the canonical structure — replace it with your real backlog by running `/action-items-compress` for the first time once your vault has accumulated tasks across a few weeks of notes.
+
+#### `/refresh-vault` — monthly drift + DRY auditor
+
+Reads recently-modified files (last 24h = "Tier 1 truth") and audits older notes against them for contradictions, stale facts, dead links, and content duplicated across multiple notes instead of linked. Two classes of fixes:
+
+- **Mechanical** — value canonically asserted in a Tier 1/2 source. Applied directly (date corrections, frontmatter updates, dead-link removals, replacing references to archived notes with their `superseded-by` target).
+- **Editorial** — requires composing prose or making judgment calls. Applied with stricter verification — re-reads the cited source after editing and reverts the change if the prose isn't backed by canonical assertions.
+
+Heavy (`model: opus`, `effort: max`). Don't run daily — monthly cadence is right unless you've made a major restructuring. Produces a changelog at `Calendar/Daily/YYYY-Mon/refresh-vault-YYYY-MM-DD.md` listing every fix applied (split by mechanical / editorial), every reverted edit with the verification failure, and any "Needs Human Decision" findings — items requiring judgment beyond the editorial bar (e.g., resolving a contradiction between two equally-fresh sources).
+
+Skipped on fresh clones (under 8 .md files). Becomes useful once you have ~20+ interconnected notes.
+
+#### `/hyper-explore-vault` — quarterly deep audit
+
+The heaviest skill in the suite. Launches 6 background agents in parallel (one per region: Atlas / Calendar / People / Efforts / Root + Templates / Wikilink graph), each reading every file in its scope. After several minutes, returns a synthesis report covering:
+
+- **Structural health** — vault score, dead links, orphan notes, entities referenced but missing their own notes, empty/stub notes
+- **The meaning** — what is this vault actually about? what story does the timeline tell? where is attention going? what does it imply you're worried about?
+- **Hidden threads** — implicit connections across multiple notes that aren't explicitly linked but should be (the "aha" insights that only emerge from reading everything at once)
+- **Strategic contradictions** — places where different notes imply different priorities
+- **What's missing** — person notes that should exist, topics referenced but never given their own note, process gaps
+- **Priority queue** — highest-leverage actions ranked by impact
+
+Run when planning a quarter, before a strategic shift, or when the vault feels sprawling and you want a third-party read on it. Optionally offers to create a Hidden Threads MOC, stub person notes for missing people, dead-link fix instructions, or a Vault Health canvas after delivering the synthesis. Falls back to sequential execution on small vaults (under ~50 files) or if the harness disallows parallel agents.
 
 ### The 80% case
 
