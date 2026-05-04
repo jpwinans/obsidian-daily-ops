@@ -4,7 +4,7 @@ description: |
   Encapsulates meeting note format conventions and the algorithm for
   restructuring raw notes/transcripts into the standard template.
   Bundles meeting/1on1/recurring templates. Auto-loaded by
-  /meeting-extract, /prep-meeting, /prep-1on1, /prep-day.
+  /meeting-ingest, /prep-meeting, /prep-1on1, /prep-day.
 user-invocable: false
 model: inherit
 allowed-tools: Read

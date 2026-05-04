@@ -88,7 +88,6 @@ _Meta/          Templates
 | `/rollup-daily` | End-of-day reconciliation against the morning plan |
 | `/rollup-weekly` | Weekly review — accomplishments, in-progress, blockers, next week focus |
 | `/gmail-triage` | Classifies inbox into your GTD label structure |
-| `/meeting-extract` | Restructures a raw meeting note into the template format |
 | `/meeting-ingest` | Pulls Gemini / Google Meet transcript emails and enriches vault meeting notes |
 | `/action-items-scan` | Buckets open tasks by age (stale / aging / due today / horizon) |
 | `/action-items-compress` | Consolidates duplicate action items across the vault |
@@ -140,16 +139,11 @@ The skills are designed for a two-touch day: one command in the morning, one at 
 | **Start of day** | `/morning-start` | Scans Slack (24h on weekdays / 72h on Mondays), Gmail inbox, vault state. Writes today's daily note with risk digest, ownership-classified items, top-3 priorities, deploy status, email triage. **Auto-chains into `/prep-day`** which reads your calendar, classifies each meeting (1-1 / recurring / ad-hoc / ignore), and runs prep skills per event. By the time it finishes, your daily note + every meeting note is ready. |
 | **End of day** | `/rollup-daily` | Auto-runs `/meeting-ingest` first (pulls Gemini Notes / Google Meet transcript emails from Gmail and enriches the corresponding vault meeting notes — synthesized, not raw). Then reconciles morning plan vs reality across every section of today's daily note (tasks done/deferred/moot, focus achieved, meetings logged, EOD summary). |
 
-### Two ways meeting notes get written
+### How meeting notes get written
 
-Most users only need the first. `/meeting-extract` is the fallback for cases the first doesn't cover.
+Meeting notes are written automatically by `/meeting-ingest`, which runs as part of `/rollup-daily` at end of day. It searches Gmail for Gemini Notes / Google Meet transcript emails from the day, then synthesizes each into a structured meeting note in `Calendar/Meetings/<Name>/YYYY-MM-DD.md` (or `Calendar/1-1s/<Person>/YYYY-MM-DD.md` for 1:1s). You don't run anything directly.
 
-| Scenario | Which skill | Trigger |
-|----------|------------|---------|
-| Gemini Notes or Google Meet emails you a transcript | **`/meeting-ingest`** | Auto, via `/rollup-daily` at end of day. You don't run anything. |
-| You have raw notes you saved manually to the vault (in-person meeting, untranscribed call, 3rd-party tool, colleague's notes) | **`/meeting-extract <path>`** | Manual, ad hoc. Point it at the vault file. |
-
-If all your meetings are Gemini- or Meet-transcribed, the EOD `/rollup-daily` covers everything and you'll rarely run `/meeting-extract`.
+If a meeting wasn't recorded by Gemini or Google Meet (in-person, untranscribed call, etc.), no transcript reaches Gmail and no note gets generated automatically — you'll need to write that one by hand from your live notes.
 
 ### Weekly
 
