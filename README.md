@@ -18,9 +18,11 @@ A self-contained Obsidian vault and Claude Code skill pack for running your day:
 
 3. **Fill in `CLAUDE.md`.** Copy the template and edit:
    ```bash
-   cp CLAUDE.md.template CLAUDE.md
+   cp CLAUDE.md.template.md CLAUDE.md
    ```
-   Replace every `TODO` with your real people, channels, projects, and Gmail labels. See `CLAUDE.md.example` for a fully filled-out reference.
+   Replace every `TODO` with your real people, channels, projects, and Gmail labels. See `CLAUDE.md.example.md` for a fully filled-out reference.
+
+   *Why the double `.md` extension?* Obsidian only renders files whose name ends in `.md`. Naming the source files `CLAUDE.md.template.md` and `CLAUDE.md.example.md` lets you read them inside Obsidian as you fill in your real `CLAUDE.md`. Claude Code reads `CLAUDE.md` directly — the `.template.md` / `.example.md` files are for human reference only.
 
 4. **Install Claude Code** if you don't have it: <https://docs.claude.com/code>.
 

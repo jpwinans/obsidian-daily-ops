@@ -17,7 +17,7 @@ related:
 
 **Role:** Director of AI Product Engineering
 **Team:** AI Product
-**Reports to:** [[@Sam Chen]] (peer of Alex Rivera in this example org)
+**Reports to:** 
 
 > [!note] Sample peer note
 > Demonstrates a peer-leader person note (Tier 3) in the example "Acme Robotics" org. Delete or adapt to your own org.
