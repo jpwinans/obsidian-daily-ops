@@ -78,7 +78,7 @@ Used by skills to cross-reference Slack/email mentions to active work.
 
 ## Gmail GTD Labels
 
-Used by `/gmail:triage` and `/morning:start`. Skills use label *names*, not IDs — just match what your Gmail labels are actually called.
+Used by the email-triage portion of `/morning-start`. Skills use label *names*, not IDs — just match what your Gmail labels are actually called.
 
 - `📥 GTD/1 - Next Actions/@Email` — needs a reply
 - `📥 GTD/1 - Next Actions/@Computer` — computer task (form, review, training)

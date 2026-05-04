@@ -51,7 +51,7 @@ Optional. Free-form prose describing folder layout. If overrides are documented 
 ```
 
 ### `## People`
-Required for any skill that uses person-tier weighting (`/morning-start`, `/gmail-triage`, `/action-items-compress`, `/action-items-triage`).
+Required for any skill that uses person-tier weighting (`/morning-start`, `/action-items-compress`, `/action-items-triage`).
 
 Parse:
 - `### Importance Tiers` — a markdown table with columns `Tier | Weight | Role | Members`. Members are `@`-prefixed. Build a map `personTiers[<name>] = { tier: N, weight: W }`. Strip `@` from names but preserve the wikilink form when emitting back.
@@ -80,9 +80,9 @@ If the section is missing entirely, return `channels: {}` and a `warnings` entry
 Optional. Parse bullets as `[{ name, description, dashboardPath? }]`. Skills use these to cross-reference Slack/email mentions to active work.
 
 ### `## Gmail GTD Labels`
-Required for `/gmail-triage` and the email portion of `/morning-start`. Parse bullets as `[{ label, purpose }]`. The `label` is the backticked string (e.g., `📥 GTD/1 - Next Actions/@Email`); `purpose` is the text after the `—`.
+Required for the email-triage portion of `/morning-start`. Parse bullets as `[{ label, purpose }]`. The `label` is the backticked string (e.g., `📥 GTD/1 - Next Actions/@Email`); `purpose` is the text after the `—`.
 
-If missing, return `labels: []` and a warning: "No `## Gmail GTD Labels` section — `/gmail-triage` cannot classify."
+If missing, return `labels: []` and a warning: "No `## Gmail GTD Labels` section — `/morning-start` will skip its email-triage section."
 
 ### `## Notion`
 Optional. Parse `[Page Title](url) — what's there` bullets as `[{ title, url, description }]`. Used for cross-reference lookups.

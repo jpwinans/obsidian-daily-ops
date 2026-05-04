@@ -28,7 +28,7 @@ A self-contained Obsidian vault and Claude Code skill pack for running your day:
 
 5. **Connect MCP servers** for the integrations you want. The skills work with whatever subset you have — they degrade gracefully when an MCP isn't connected.
    - **Slack** — used by `/morning-start`, `/morning-brief`, `/blocker-scan`
-   - **Gmail** — used by `/morning-start`, `/gmail-triage`, `/meeting-ingest`
+   - **Gmail** — used by `/morning-start` (email triage section) and `/meeting-ingest`
    - **Google Calendar** — used by `/prep-day`
    - **Google Drive** — used by `/meeting-ingest` for transcript files
    - **Notion** (optional) — used by `/prep-meeting`, `/prep-1on1`, `/morning-start`
@@ -87,7 +87,6 @@ _Meta/          Templates
 | `/prep-1on1` | 1:1 prep — recent activity, last 1:1 follow-ups, Slack mentions |
 | `/rollup-daily` | End-of-day reconciliation against the morning plan |
 | `/rollup-weekly` | Weekly review — accomplishments, in-progress, blockers, next week focus |
-| `/gmail-triage` | Classifies inbox into your GTD label structure |
 | `/meeting-ingest` | Pulls Gemini / Google Meet transcript emails and enriches vault meeting notes |
 | `/action-items-scan` | Buckets open tasks by age (stale / aging / due today / horizon) |
 | `/action-items-compress` | Consolidates duplicate action items across the vault |
