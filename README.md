@@ -143,7 +143,7 @@ If all your meetings are Gemini- or Meet-transcribed, the EOD `/rollup-daily` co
 
 ### Less frequent
 
-- **Weekly or before a triage session:** `/action-items-compress` — heavy. Walks the whole vault, deduplicates tasks, scores by priority, writes consolidated `📋 Action Items.md`. Asks before writing.
+- **Weekly or before a triage session:** `/action-items-compress` — heavy. Walks the whole vault, deduplicates tasks, scores by priority, writes consolidated `Action Items.md`. Asks before writing.
 - **Monthly:** `/refresh-vault` — drift + DRY auditor. Detects older notes contradicting newer ones. **Note:** has minimal value on a fresh clone (under ~10 notes); save for once your vault has accumulated content.
 - **Quarterly:** `/hyper-explore-vault` — deep multi-agent vault audit. Heavy.
 

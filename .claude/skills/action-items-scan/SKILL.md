@@ -11,7 +11,7 @@ allowed-tools: Read Edit Glob Grep
 
 # /action-items-scan — Open task triage by age
 
-Read `📋 Action Items.md`, present open tasks organized by urgency. Oldest and most overdue first, so the user can orient quickly.
+Read `Action Items.md`, present open tasks organized by urgency. Oldest and most overdue first, so the user can orient quickly.
 
 ## Input
 
@@ -22,7 +22,7 @@ No arguments. Uses today's date.
 ### Step 1 — Read context + action-items file
 
 1. Load `vault-config` for `vault.layout` (root path) and `conventions`. Apply the documented `vault-config` contract.
-2. Read `📋 Action Items.md` at vault root. Expected structure:
+2. Read `Action Items.md` at vault root. Expected structure:
    - `## 🎯 This Week` — manually curated weekly focus (≤5 items)
    - `## Open` with `### Strategic`, `### Operational`, `### Relational`
    - `## Waiting On Others` — pending on other people, with `⚡ escalate by:` sub-lines
@@ -66,7 +66,7 @@ Within each bucket sort: ⏫ first, then 🔼, then no emoji. Within same priori
 
 ### Step 4 — Update file header
 
-Touch only these fields in `📋 Action Items.md`:
+Touch only these fields in `Action Items.md`:
 
 1. Frontmatter `date:` → today
 2. H1 heading `# Action Items — YYYY-MM-DD` → today
@@ -151,7 +151,7 @@ Do not modify any tasks, sections, or other content.
 
 ## Notes
 
-- Output to stdout. The only file write is the header update in `📋 Action Items.md`.
+- Output to stdout. The only file write is the header update in `Action Items.md`.
 - 30-second orientation, not a deep review — keep lines short and scannable.
 - This Week items are never re-bucketed — respect the user's curation.
 - Someday / Maybe items are never shown — count in footer only.

@@ -8,7 +8,7 @@ status: active
 # Action Items — 2026-04-30
 
 > [!info] Sample seed file — replace with the real one
-> This is a hand-curated sample of what `/action-items-compress` produces. Run `/action-items-compress` once your vault has real tasks scattered across daily notes, meetings, and 1:1s — it will consolidate everything here, deduplicated and ranked, and demote source tasks to breadcrumbs (`→ [[📋 Action Items]]`).
+> This is a hand-curated sample of what `/action-items-compress` produces. Run `/action-items-compress` once your vault has real tasks scattered across daily notes, meetings, and 1:1s — it will consolidate everything here, deduplicated and ranked, and demote source tasks to breadcrumbs (`→ [[Action Items]]`).
 >
 > Last scanned: 2026-04-30.
 

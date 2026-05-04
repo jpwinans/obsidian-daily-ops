@@ -1,8 +1,8 @@
 ---
 name: action-items-triage
 description: |
-  Build an interactive HTML triage page for the consolidated `📋 Action
-  Items.md` backlog. Three tabs: Triage (keep / defer / delegate / kill /
+  Build an interactive HTML triage page for the consolidated
+  `Action Items.md` backlog. Three tabs: Triage (keep / defer / delegate / kill /
   complete decisions), Focus (pick 3-5 rocks for the week), Balance
   (portfolio view across work type, tags, people). Phase 2 of the skill
   applies the decisions JSON back to the vault. Triggers: "triage my
@@ -14,7 +14,7 @@ allowed-tools: Read Write Bash Glob Grep
 
 # /action-items-triage — Interactive prune / focus / balance ritual
 
-Build an interactive triage page that walks through three stages — prune, focus, balance — against the consolidated backlog at `📋 Action Items.md`. Then, after the user finishes in the browser, apply the decisions back to the vault.
+Build an interactive triage page that walks through three stages — prune, focus, balance — against the consolidated backlog at `Action Items.md`. Then, after the user finishes in the browser, apply the decisions back to the vault.
 
 ## What this skill produces
 
@@ -24,14 +24,14 @@ A single self-contained `.html` file with three tabs:
 2. **Focus** — pick 3–5 rocks for `🎯 This Week` from the survivors (cap enforced)
 3. **Balance** — portfolio view across work type, category tag, and person attribution
 
-Plus a Phase 2 vault write-back — after the browser session, the page emits a decisions JSON file and the skill applies the changes directly to `📋 Action Items.md`.
+Plus a Phase 2 vault write-back — after the browser session, the page emits a decisions JSON file and the skill applies the changes directly to `Action Items.md`.
 
 ## When to trigger
 
 | Phase | User says | What to do |
 |-------|-----------|------------|
 | Phase 1 (build) | "triage my action items", "daily triage", "what should I work on today" | Parse backlog, score, build HTML, save to vault root |
-| Phase 2 (apply) | "apply the decisions", "apply decisions from the JSON", "write back the triage" | Read `action-items-decisions.json`, edit `📋 Action Items.md`, report summary |
+| Phase 2 (apply) | "apply the decisions", "apply decisions from the JSON", "write back the triage" | Read `action-items-decisions.json`, edit `Action Items.md`, report summary |
 
 ---
 
@@ -40,8 +40,8 @@ Plus a Phase 2 vault write-back — after the browser session, the page emits a 
 ### 1. Read context + backlog
 
 1. Load `vault-config` for `personTiers`, `vault.layout`. Apply the documented `vault-config` contract. Identify Tier 1-2 people (the user's manager and skip-level) — these drive the BossBoost.
-2. Open `📋 Action Items.md` at vault root.
-   - **If the file does not exist:** stop with a clear message: "No `📋 Action Items.md` at vault root yet. Run `/action-items-compress` first to consolidate vault tasks into a ranked backlog, then re-run this skill."
+2. Open `Action Items.md` at vault root.
+   - **If the file does not exist:** stop with a clear message: "No `Action Items.md` at vault root yet. Run `/action-items-compress` first to consolidate vault tasks into a ranked backlog, then re-run this skill."
    - **If it exists but has no open tasks:** stop and report "Backlog is empty — nothing to triage."
    - Otherwise, parse every open task (`- [ ]`) in the `## Open` section, grouped by Work Type (Strategic / Operational / Relational).
 3. Parse `## Waiting On Others` (these get a `waiting: true` flag — shown in triage but default to "Keep" with a different UI treatment) and `## Someday / Maybe` (`someday: true` — only in a collapsed drawer, not surfaced for triage).
@@ -148,7 +148,7 @@ Read `template.html` (alongside this `SKILL.md`). Replace two placeholders:
 
 The `directReports` array populates the Delegate modal dropdown. Pull from `vault-config.people.directReports` (use the `name` field of each entry).
 
-Save the populated HTML to vault root as `📋 Action Items Triage.html`. Tell the user to open it and give the one-line return instruction ("paste the decisions JSON and say: apply decisions").
+Save the populated HTML to vault root as `Action Items Triage.html`. Tell the user to open it and give the one-line return instruction ("paste the decisions JSON and say: apply decisions").
 
 ### 4. Brief summary before pointing to the HTML
 
@@ -184,7 +184,7 @@ Triggered when the user says "apply decisions", "apply the triage", or similar a
 
 ### How to apply each action
 
-Read `📋 Action Items.md` fresh. For each decision:
+Read `Action Items.md` fresh. For each decision:
 
 **`keep`** — no change.
 
@@ -214,11 +214,11 @@ No `#cancelled` tag, no sub-item note. For tasks already done at triage time. If
 
 - **Never touch** frontmatter, section headers, `## Waiting On Others`, or `## Someday / Maybe` (unless the user explicitly triaged something from those — then follow the same rules).
 - **Preserve breadcrumbs** (`→ [[...]]`) on every edited line.
-- **Always edit** `📋 Action Items.md` in place. Don't create a new file.
+- **Always edit** `Action Items.md` in place. Don't create a new file.
 
 ### Verification gate
 
-Re-read `📋 Action Items.md` and verify:
+Re-read `Action Items.md` and verify:
 1. `🎯 This Week` has exactly the focus IDs requested (3–5)
 2. All `defer` show the new due date
 3. All `delegate` show `@delegate [[@Name]]`
@@ -249,9 +249,9 @@ Report a one-line summary per action: "Kept 22 · Deferred 8 · Delegated 4 · C
 
 ## File locations
 
-- Backlog: `📋 Action Items.md` at vault root
+- Backlog: `Action Items.md` at vault root
 - Template: alongside this `SKILL.md` as `template.html`
-- Output HTML: `📋 Action Items Triage.html` at vault root
+- Output HTML: `Action Items Triage.html` at vault root
 - Decisions JSON: typically `~/Downloads/action-items-decisions.json` (default browser download)
 
 ## Customizing visuals

@@ -45,7 +45,7 @@ Find all notes created or modified on the target date. This is the source of tru
 2. **Meeting notes:** read files in `<vault.layout.meetings>/` with the target date (check `date` frontmatter too)
 3. **Modified project notes:** check `<vault.layout.projects>/` for files modified on the target date
 4. **Modified person notes:** check `<vault.layout.people>/` for files modified on the target date
-5. **Action Items file:** read `📋 Action Items.md` at vault root if it exists — check for items with the target date
+5. **Action Items file:** read `Action Items.md` at vault root if it exists — check for items with the target date
 6. **Other modified notes:** check `Atlas/` and `Efforts/` for any files modified on the target date
 
 **If no daily note exists for the target date AND no other source notes were modified that day** (truly empty day — vacation, sick, weekend treated as workday by accident), report: "Nothing to roll up — no daily note and no vault activity on [date]." Do not create an empty daily note retroactively unless the user explicitly asks.
