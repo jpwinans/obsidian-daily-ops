@@ -20,12 +20,26 @@ Other workflow skills invoke you near the start of their execution. They will sa
 
 ## What you do
 
-1. **Read** `CLAUDE.md` from the vault root.
-2. **Parse** the documented sections below.
-3. **Validate** required ones are present.
-4. **Return** a structured object the calling skill can use.
+1. **Pre-flight check** — verify `CLAUDE.md` exists before parsing.
+2. **Read** `CLAUDE.md` from the vault root.
+3. **Parse** the documented sections below.
+4. **Validate** required ones are present.
+5. **Return** a structured object the calling skill can use.
 
-If `CLAUDE.md` does not exist, return `{ status: "missing", message: "No CLAUDE.md found. Copy CLAUDE.md.template to CLAUDE.md and fill it in." }` and stop.
+### Pre-flight: detect the "forgot to copy" mistake
+
+If `CLAUDE.md` does **not** exist at vault root:
+
+- **Case A — template files exist but no CLAUDE.md.** If `CLAUDE.md.template.md` or `CLAUDE.md.example.md` exists at vault root, the user cloned the template but didn't copy. Return `status: "missing"` with this exact message:
+  > "No `CLAUDE.md` at vault root, but I see `CLAUDE.md.template.md` is present. Run `cp CLAUDE.md.template.md CLAUDE.md` and fill in the TODO markers, then re-run this skill. See `CLAUDE.md.example.md` for a filled-out reference."
+
+- **Case B — neither CLAUDE.md nor templates exist.** This vault was set up some other way. Return `status: "missing"` with: "No `CLAUDE.md` at vault root. Create one with at least the sections this parser expects (see vault-config/SKILL.md schema docs)."
+
+In both cases, stop. Do not return a partial config.
+
+### Parser rule: section headers are case-sensitive
+
+The Markdown headers below (`## People`, `## Channels (Slack)`, `## Gmail Labels`, etc.) are matched **exactly** — capitalization, whitespace, and punctuation must match. If a user wrote `## people` or `## channels (Slack)` or `## Gmail labels`, treat that section as missing and surface a warning naming the expected header form. Do not auto-correct.
 
 ## Schema you parse
 
@@ -57,7 +71,20 @@ Parse:
 - `### Direct Reports` — bullet list of `@Name` entries with optional descriptions. Return as `directReports: [{ name, description }]`.
 - `### Key Stakeholders` — same shape as direct reports → `stakeholders: [{ name, description }]`.
 
-If `### Importance Tiers` table is missing or malformed, return an error with: "Could not parse `## People` → `### Importance Tiers` table. Expected columns: Tier | Weight | Role | Members."
+If `### Importance Tiers` table is missing or malformed, return `status: "error"` with this message (include the example so the user can copy-paste a fix):
+
+> Could not parse `## People` → `### Importance Tiers` table. Expected a markdown table with exactly these columns: `Tier | Weight | Role | Members`. Example:
+>
+> ```
+> | Tier | Weight | Role | Members |
+> |------|--------|------|---------|
+> | 1 | 5 | CEO / Skip-level | @Name |
+> | 2 | 4 | Direct manager | @Name |
+> | 3 | 3 | Peer leaders | @Name, @Name |
+> | 4 | 2 | Key stakeholders | @Name |
+> | 5 | 1 | Direct reports | @Name |
+> | 6 | 0 | Anyone else | — |
+> ```
 
 ### `## Channels (Slack)`
 Required for `/morning-start`, `/morning-brief`, `/blocker-scan`. Parse subsection headers (`### Daily Pulse`, `### Deploy / Alerts`, `### Leadership`, etc.) as channel groups. Each bullet is `#channel-name [— purpose]` with an optional `(ID: C0XXXXXX)` suffix.
