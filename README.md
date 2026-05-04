@@ -235,6 +235,29 @@ See [Claude Code Skills docs](https://code.claude.com/docs/en/skills.md) for the
 
 ---
 
+## Obsidian plugins
+
+The templates and skills in this vault assume a few Obsidian community plugins. They ship in `.obsidian/plugins/` but **Obsidian won't auto-enable them** on first open — you'll see a "Trust author and enable plugins?" prompt or have to enable each one manually under **Settings → Community plugins → Installed plugins**.
+
+| Plugin | What the template uses it for |
+|--------|-------------------------------|
+| **Dataview** | The Daily Note's "Overdue Tasks" / "Due Today" / "Stale Relationships" / "Inbox" widgets, the Engineering MOC's queries, the Project template's "Decisions" pull, person-note "Meeting History" tables, and the Action Items file's task queries. **Required** — most templates render empty without it. |
+| **Tasks** | Task syntax with priority emojis (⏫ 🔼), due dates (`📅 YYYY-MM-DD`), completion (✅), context tags (`@meeting`, `@discuss`), plus the Weekly Note's `tasks` query block. **Required** if you want the action-items pipeline to work. |
+| **Calendar** | Sidebar for navigating Daily / Weekly notes by date. Optional but strongly recommended — most users expect it for `Calendar/Daily/` navigation. |
+| **Templater** | Substitutes `{{date:YYYY-MM-DD}}` / `{{title}}` placeholders in `_Meta/Templates/` when you create a new note from a template. Optional — without it, those placeholders stay literal and you fill them in manually. |
+| **Auto Link Title** | Fetches the page title when you paste a URL into a note (so `https://...` becomes `[Page Title](...)`). Optional, quality-of-life. |
+| **Editing Toolbar** | Floating formatting bar in the editor. Optional, UI preference. |
+
+**On first open:**
+
+1. Obsidian shows the "Trust author and enable plugins?" dialog. Click **Trust author and enable plugins** if you trust this template's source.
+2. If you skipped the trust dialog: open **Settings → Community plugins**, toggle on **Restricted mode → off**, then enable each plugin under **Installed plugins**.
+3. If a plugin is missing from `.obsidian/plugins/` (e.g., your clone is incomplete), install via **Browse community plugins** — they're all on the official Obsidian registry.
+
+If you want a leaner vault, you can remove plugins you don't use — but expect Dataview-driven widgets in the Daily Note and MOCs to render as empty code blocks until you re-enable Dataview.
+
+---
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
