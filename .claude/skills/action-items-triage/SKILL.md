@@ -142,7 +142,7 @@ Read `template.html` (alongside this `SKILL.md`). Replace two placeholders:
   "totalWaiting": 8,
   "totalSomeday": 15,
   "focusCap": 5,
-  "directReports": ["Riley Cohen", "Nia Okonkwo", "Tom Bauer"]
+  "directReports": ["Nia Okonkwo", "Tom Bauer"]
 }
 ```
 

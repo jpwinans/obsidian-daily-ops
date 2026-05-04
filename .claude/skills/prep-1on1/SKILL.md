@@ -21,7 +21,7 @@ Gather context and produce a 30-minute-ready 1:1 note: agenda at the top, resear
 
 ## Input
 
-`$ARGUMENTS` = person name (e.g., `Riley Cohen` or `@Riley Cohen` or `People/@Riley Cohen.md`).
+`$ARGUMENTS` = person name (e.g., `James Winans` or `@James Winans` or `People/@James Winans.md`).
 
 Strip `@` prefix, `<vault.layout.people>/` path prefix, and `.md` suffix to get the clean name.
 

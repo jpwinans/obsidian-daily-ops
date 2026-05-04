@@ -23,19 +23,19 @@ Standard ACE layout — see `_Meta/Templates/` for note templates. No folder ove
 |------|--------|------|---------|
 | 1 | 5 | CEO / Skip-level | @Maya Patel |
 | 2 | 4 | Direct manager | @Sam Chen |
-| 3 | 3 | Peer leaders | @Dana Kim, @Jordan Reyes |
+| 3 | 3 | Peer leaders | @Dana Kim, @Jordan Reyes, @James Winans |
 | 4 | 2 | Key stakeholders | @Priya Shah, @Marcus Webb |
-| 5 | 1 | Direct reports | @Riley Cohen, @Nia Okonkwo, @Tom Bauer |
+| 5 | 1 | Direct reports | @Nia Okonkwo, @Tom Bauer |
 | 6 | 0 | Anyone else | — |
 
 ### Direct Reports
-- `@Riley Cohen` — Core Platform tech lead
 - `@Nia Okonkwo` — Data Pipeline EM
 - `@Tom Bauer` — Senior Staff Engineer (cross-team)
 
 ### Key Stakeholders
 - `@Priya Shah` — Director of Product, owns the Observability roadmap with Alex
 - `@Marcus Webb` — Director of SRE, partner on incident response
+- `@James Winans` — peer Director of AI Product Engineering, partner on shared evaluation infra
 
 ## Channels (Slack)
 

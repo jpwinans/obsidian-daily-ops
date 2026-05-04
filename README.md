@@ -1,4 +1,4 @@
-# obsidian-daily-ops
+# Obsidian Daily Ops
 
 A self-contained Obsidian vault and Claude Code skill pack for running your day: morning briefing, meeting prep, daily/weekly rollups, action-item triage, blocker scanning, and email triage — wired to your Slack, Gmail, Google Calendar, and Notion accounts.
 

@@ -112,7 +112,7 @@ Return as `conventions: { dailyNotePath: "...", meetingIgnorePatterns: [...], ..
       ...
     },
     "personTiers": { "Maya Patel": { "tier": 1, "weight": 5 }, ... },
-    "directReports": [{ "name": "Riley Cohen", "description": "..." }],
+    "directReports": [{ "name": "Nia Okonkwo", "description": "..." }],
     "stakeholders": [...]
   },
   "channels": { ... },
