@@ -120,8 +120,18 @@ The skills are designed for a two-touch day: one command in the morning, one at 
 | When | Command | What you get |
 |------|---------|--------------|
 | **Start of day** | `/morning-start` | Scans Slack (24h on weekdays / 72h on Mondays), Gmail inbox, vault state. Writes today's daily note with risk digest, ownership-classified items, top-3 priorities, deploy status, email triage. **Auto-chains into `/prep-day`** which reads your calendar, classifies each meeting (1-1 / recurring / ad-hoc / ignore), and runs prep skills per event. By the time it finishes, your daily note + every meeting note is ready. |
-| **During day, ad hoc** | `/meeting-extract <path>` | If you took raw notes during a meeting, restructures them into the standard template (Context / Discussion / Decisions / Action Items / Observations) with people and projects backlinked. |
-| **End of day** | `/rollup-daily` | Auto-runs `/meeting-ingest` first (pulls Gemini Notes / Google Meet transcript emails from Gmail and enriches the corresponding vault meeting notes). Then reconciles morning plan vs reality across every section of today's daily note (tasks done/deferred/moot, focus achieved, meetings logged, EOD summary). |
+| **End of day** | `/rollup-daily` | Auto-runs `/meeting-ingest` first (pulls Gemini Notes / Google Meet transcript emails from Gmail and enriches the corresponding vault meeting notes — synthesized, not raw). Then reconciles morning plan vs reality across every section of today's daily note (tasks done/deferred/moot, focus achieved, meetings logged, EOD summary). |
+
+### Two ways meeting notes get written
+
+Most users only need the first. `/meeting-extract` is the fallback for cases the first doesn't cover.
+
+| Scenario | Which skill | Trigger |
+|----------|------------|---------|
+| Gemini Notes or Google Meet emails you a transcript | **`/meeting-ingest`** | Auto, via `/rollup-daily` at end of day. You don't run anything. |
+| You have raw notes you saved manually to the vault (in-person meeting, untranscribed call, 3rd-party tool, colleague's notes) | **`/meeting-extract <path>`** | Manual, ad hoc. Point it at the vault file. |
+
+If all your meetings are Gemini- or Meet-transcribed, the EOD `/rollup-daily` covers everything and you'll rarely run `/meeting-extract`.
 
 ### Weekly
 
@@ -145,7 +155,11 @@ End of day:     /rollup-daily             ← ingest transcripts + reconcile
 Friday EOD:     /rollup-daily, /rollup-weekly
 ```
 
-That's the skeleton. Everything else slots in when you need it.
+That's the whole skeleton. Two commands a day. The auto-chaining does the rest:
+`/morning-start` → `/prep-day` → `/prep-meeting` / `/prep-1on1` (per event)
+`/rollup-daily` → `/meeting-ingest` → `/prep-meeting` / `/prep-1on1` (if a transcript arrived for a meeting that didn't have a prep note yet)
+
+Everything else slots in when you need it — most days you don't.
 
 ---
 
