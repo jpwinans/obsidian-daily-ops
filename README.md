@@ -41,6 +41,20 @@ A self-contained Obsidian vault and Claude Code skill pack for running your day:
 
 7. **Open Claude Code in the vault directory** and try `/morning-start`.
 
+### Cleanup after you understand the vault
+
+The template ships with sample notes so you can see the shape of a working vault before you have your own data. Once you've poked around and understood the structure, **delete these — they're scaffolding, not your actual content**:
+
+- `Calendar/Daily/2026-Apr/2026-04-30.md` — sample daily note showing what `/morning-start` produces
+- `Calendar/1-1s/James Winans/2026-04-30.md` — sample peer 1:1 note (and the parent `Calendar/1-1s/James Winans/` folder once empty)
+- `Calendar/Meetings/Eng Directors Sync/2026-04-30.md` — sample recurring-meeting note (and the parent folder once empty)
+- `People/@James Winans.md` — sample peer-leader person note
+- `People/@Example Person.md` — bare-schema example person note showing the expected frontmatter
+- `Action Items.md` — sample seed file. Replace by running `/action-items-compress` once your vault has accumulated real tasks across daily notes / 1:1s / meetings.
+- `Atlas/Leadership/Org Chart.md`, `Atlas/MOCs/{Engineering,Leadership,Product} MOC.md`, `Efforts/Outcomes/Current OKRs.md`, `Home.md` — these are placeholders showing common structures. Keep, replace, or delete as fits your workflow.
+
+The two CLAUDE files (`CLAUDE.md.template.md` and `CLAUDE.md.example.md`) are reference material — keep them around if you ever need to re-bootstrap or share the structure with someone else.
+
 ---
 
 ## Your daily flow at a glance

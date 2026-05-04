@@ -38,14 +38,14 @@ status: active
 ### Relational
 *(1:1 follow-ups, connections, introductions — neglect becomes visible fast)*
 
-- [ ] Reach out to [[@Marcus Webb]] — 6 days overdue on contact cadence #relational 📅 2026-05-02
+- [ ] Reach out to Marcus Webb — 6 days overdue on contact cadence #relational 📅 2026-05-02
 
 ---
 
 ## Waiting On Others
 *(Ball is in someone else's court. Scan weekly — escalate on or before trigger date.)*
 
-- [ ] [[@Marcus Webb]]: finalize on-call swap with PagerDuty config 📅 2026-05-04 → [[Calendar/Meetings/Eng Directors Sync/2026-04-30]]
+- [ ] Marcus Webb: finalize on-call swap with PagerDuty config 📅 2026-05-04 → [[Calendar/Meetings/Eng Directors Sync/2026-04-30]]
   ⚡ escalate by: 2026-05-03 — DM Marcus directly if no PagerDuty update by EOD Sunday
 
 ---
