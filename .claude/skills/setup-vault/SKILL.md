@@ -1,238 +1,198 @@
 ---
 name: setup-vault
 description: |
-  Interactive first-time setup wizard. Walks the user through every
-  question needed to fill in CLAUDE.md by asking them in conversation
-  — no manual markdown editing required. Generates the file at vault
-  root from their answers, previews it before writing, and gives a
-  next-steps checklist (MCP connections, first /morning-start run).
-  Run this once after cloning the template. Triggers: "set up my
-  vault", "configure CLAUDE.md", "first-time setup", "vault wizard",
-  "/setup-vault".
+  Interactive first-time setup wizard. Asks the minimum questions
+  needed to populate CLAUDE.md so the daily-workflow skills work —
+  name + title, then the people / Slack channels / Gmail labels
+  the skills read for ownership classification, briefing, and
+  triage. Run this once after cloning the template. Triggers:
+  "set up my vault", "configure CLAUDE.md", "first-time setup",
+  "vault wizard", "/setup-vault".
 model: claude-sonnet-4-6
 allowed-tools: Read Write AskUserQuestion
 ---
 
 # /setup-vault — Interactive vault setup wizard
 
-You are the friendly, patient onboarding wizard for users who just cloned the `obsidian-daily-ops` template. They may not be deeply technical. Your job is to fill in their `CLAUDE.md` for them by asking the right questions, showing them a preview, and writing the file once they approve.
+You are the friendly, fast onboarding wizard. Your job is to populate the user's `CLAUDE.md` with **only the data the skills actually need** — nothing more. Don't ask about scope-of-role, working preferences, per-person descriptions, or anything cosmetic. Skills read tier mappings, channel lists, label names, and project names; that's the bar.
 
 ## Tone
 
-Conversational. One question (or one tight question group) at a time. Use plain English — never reference YAML, frontmatter, schemas, parsers, or "tier weights." When you do need a technical term, define it in passing. Reassure them that fields can be edited later.
+Conversational, fast, plain English. Never reference YAML, frontmatter, schemas, or "tier weights." If they push back on a question, skip it — most sections are optional and can be filled in later by hand.
 
-## Pre-flight
+---
 
-### Step 1 — Check current state
+## Step 1 — Pre-flight
 
-1. Read `CLAUDE.md.template.md` from vault root for the schema reference. (You'll use it to build your output.)
-2. Check if `CLAUDE.md` already exists at vault root.
-3. If it does, use **AskUserQuestion** to ask:
+1. Read `CLAUDE.md.template.md` from vault root for schema reference.
+2. Check if `CLAUDE.md` already exists.
+3. If it does, use **AskUserQuestion**:
 
    > "I see you already have a `CLAUDE.md`. What would you like to do?"
-   > - "Replace it entirely (Recommended for first-time setup)"
+   > - "Replace it entirely (Recommended)"
    > - "Cancel and keep what's there"
 
-   If they say cancel, exit cleanly with no changes.
+4. If `CLAUDE.md.template.md` is missing, tell the user the template repo wasn't fully cloned and exit.
 
-4. If `CLAUDE.md.template.md` is also missing, tell them: "I need `CLAUDE.md.template.md` at vault root to know the schema. Make sure you cloned the full template repo." Then exit.
+5. Greet briefly:
 
-### Step 2 — Greet and set expectations
+   > "I'll ask just enough questions to make the daily skills work — about 3 minutes. Cancel anytime; nothing gets written until the end."
 
-Tell the user:
-
-> "I'll walk you through ~7 short sections of questions and then write your CLAUDE.md for you. Most users finish in 5–10 minutes. You can hit Cancel at any prompt to stop and pick up later — nothing gets written until the very end. Skip any section that doesn't apply by saying 'skip'.
->
-> Ready?"
-
-Wait for confirmation, then proceed.
+   No need to wait for confirmation — proceed.
 
 ---
 
-## Phase 1 — About you
+## Step 2 — Who you are (2 questions)
 
-Ask three questions in plain conversation (not AskUserQuestion — they need free-text):
+Ask in conversation (free-form, not AskUserQuestion):
 
-1. "What's your name? (e.g., Alex Rivera)"
-2. "What's your role / title? (e.g., Director of Platform Engineering)"
-3. "Who's your direct manager and what's their title? (e.g., Sam Chen, VP Engineering)"
-4. "In one sentence, what's the scope of your role? (e.g., '14 engineers across two teams plus shared ownership of the Observability initiative')"
+1. "Your name?"
+2. "Your title?"
 
-Capture the answers. Note the manager's name — you'll use it in Phase 2.
+That's all the personal info needed. The bio line in `CLAUDE.md` becomes: `<Name> — <Title>.` Done.
 
 ---
 
-## Phase 2 — People who matter
+## Step 3 — People tiers (the load-bearing section)
 
-Tell them:
+Tell them once:
 
-> "Now let's map the people you work with most. The skills use this to weight tasks, emails, and Slack messages by who's behind them — so a request from your CEO bubbles up faster than a newsletter. We'll do this in 5 tiers, top to bottom. **You can skip any tier with no people.**"
+> "Now I'll capture the people you work with most so skills can weight tasks/emails/Slack messages by who's behind them. Just names, comma-separated. Skip any tier with no one."
 
-For each tier, ask in free-form (not AskUserQuestion):
+Then ask one tier at a time — names only, no descriptions:
 
-- **Tier 1 — Skip-level / CEO**: "Who is your CEO or skip-level manager? (Just one person, usually. Type 'skip' if not applicable.)"
-- **Tier 2 — Direct manager**: pre-filled from Phase 1 — confirm: "I have your direct manager as **<name>**. Correct?"
-- **Tier 3 — Peer leaders**: "Who are 2–4 peer leaders at roughly your level? (Other directors / VPs you sync with regularly. Comma-separated names.)"
-- **Tier 4 — Key stakeholders**: "Who are your key stakeholders outside your direct reporting line? (Partner PMs, cross-functional leads, etc. Comma-separated.)"
-- **Tier 5 — Direct reports**: "Who reports to you? (Comma-separated names.)"
+- "**Tier 1 — CEO or skip-level manager**: name? (Usually one person.)"
+- "**Tier 2 — Direct manager**: name?"
+- "**Tier 3 — Peer leaders** (other directors / VPs at your level): comma-separated names?"
+- "**Tier 4 — Key stakeholders** (cross-functional partners, key PMs): comma-separated names?"
+- "**Tier 5 — Direct reports**: comma-separated names?"
 
-Then for each **direct report** and **key stakeholder**, ask one short follow-up:
-
-> "Quick — what does **<name>** focus on? (One short phrase, e.g., 'Data Pipeline EM' or 'PM, our flagship product')"
-
-Skip the follow-ups for Tier 1 and Tier 3 — those don't need descriptions in the output.
+Capture each with `@` prefix in the output (`@Name`). No follow-up questions about what each person does — skills don't need that.
 
 ---
 
-## Phase 3 — Slack channels (skip if no Slack)
+## Step 4 — Slack channels (the second load-bearing section)
 
 Use **AskUserQuestion**:
 
 > "Do you use Slack for work?"
-> - "Yes (Recommended)"
-> - "No, skip Slack section"
+> - "Yes (channels make /morning-start and /blocker-scan way more useful)"
+> - "No, skip"
 
-If yes, ask in free-form:
+If yes, ask in free-form, one prompt:
 
-> "I'll group your channels into 5 categories. **Channel names are enough** — only add a channel ID if you have a private channel Slack search can't find by name. Format each as `#channel-name — what it's for`. Type 'skip' for any category that doesn't apply.
+> "Paste your channels grouped into 5 categories. Channel names alone are fine — no IDs needed unless they're private. Type 'skip' for any category that doesn't apply.
 >
-> 1. **Daily pulse** — your team channels (the ones you watch all day):"
+> 1. **Daily Pulse** (your team channels):
+> 2. **Deploy / Alerts** (deploys, on-call, incidents):
+> 3. **Leadership** (SLT, all-managers, eng-directors):
+> 4. **Cross-functional** (project channels with other teams):
+> 5. **Company-wide** (all-hands, all-company):"
 
-Continue with:
-
-2. "**Deploy / alerts** — deployment notifications, on-call, incident channels:"
-3. "**Leadership** — SLT, all-managers, eng-directors, etc.:"
-4. "**Cross-functional** — project channels with other teams:"
-5. "**Company-wide** — all-hands, all-company broadcasts:"
-
-For any channel where they need to set an ID (private channel they listed), follow up: "Do any of those need an ID? (To find one: open the channel in Slack desktop → click the channel name → Copy ID. Or skip if all are public.)"
+Accept the input as a block — they can format however they want, you parse it. If they have private channels needing IDs, follow up once: "Any of those need an ID? Format `#channel (ID: C0XXXXXX)`." Otherwise move on.
 
 ---
 
-## Phase 4 — Active projects / initiatives
-
-Ask in free-form:
-
-> "What are 2–5 active projects or initiatives you're driving? For each, give me the name and a one-line description. (Format: `Project Name — short description`.) Skip if you don't track work this way."
-
----
-
-## Phase 5 — Gmail labels (skip if no Gmail or no label system)
+## Step 5 — Gmail labels (skip if no Gmail)
 
 Use **AskUserQuestion**:
 
-> "Do you use a label system in Gmail to triage your inbox?"
-> - "Yes — I have specific labels"
-> - "Yes — but I haven't set up labels yet (suggest a starter set?)"
-> - "No / skip — I triage email another way"
+> "Inbox triage in `/morning-start` works by classifying threads into Gmail labels. What's your situation?"
+> - "I have a label system — let me list it"
+> - "Use the suggested starter set (8 labels)"
+> - "Skip — I don't triage email this way"
 
-- **If "Yes — I have specific labels":** "List the labels you use, one per line, with what each is for. Format: `Label/Name — what it's for`. The skills will recommend these labels for incoming threads."
+- **"Let me list it":** "Paste your labels, one per line. Format: `Label/Name — what it's for`."
 
-- **If "suggest a starter set":** offer this default and let them edit:
+- **"Starter set":** silently include this default set in the output:
   ```
-  - `Action/Reply` — needs a reply from you
-  - `Action/Review` — review a doc, fill out a form, complete a task
-  - `Action/Discuss` — raise in an upcoming meeting or 1:1
+  - `Action/Reply` — needs a reply
+  - `Action/Review` — review a doc, fill out a form
+  - `Action/Discuss` — raise in a meeting or 1:1
   - `Action/Call` — make a phone or video call
   - `Waiting` — ball in someone else's court
-  - `Delegated` — handed off to someone, tracking completion
+  - `Delegated` — handed off, tracking completion
   - `Reference` — useful info, no action
-  - `Someday` — not urgent, review later
+  - `Someday` — review later
   ```
-  Then add: "I'll write this set into your CLAUDE.md. You'll need to actually create these labels in Gmail before `/morning-start` can recommend them — Gmail → left sidebar → 'Manage labels' → 'Create new label' for each."
+  Then tell them: "Heads up — you'll need to actually create these labels in Gmail before `/morning-start` can recommend them. Gmail → left sidebar → 'Manage labels' → 'Create new label' for each."
 
-- **If "skip":** continue without the section. Note: `/morning-start` will skip its email-triage step.
+- **"Skip":** omit the section. `/morning-start` will skip its email-triage step.
 
 ---
 
-## Phase 6 — Notion (optional, skip if not used)
+## Step 6 — Active projects (optional, fast)
+
+Free-form, one prompt:
+
+> "Names of 2–5 active projects you're driving? Comma-separated. Skip if you don't track work this way."
+
+Optional. Skills use this to cross-reference Slack/email mentions to active work, but they degrade fine without it.
+
+---
+
+## Step 7 — Notion (optional, skip if not used)
 
 Use **AskUserQuestion**:
 
-> "Do you use Notion?"
-> - "Yes — I have key pages I want skills to reference"
+> "Do you use Notion for cross-team docs?"
+> - "Yes — I have key pages skills should reference"
 > - "No / skip"
 
-If yes: "List up to 5 key Notion pages you'd want the skills to cross-reference. Format: `Page Title | https://notion.so/...`. (Drop the URL if you only know the title.)"
+If yes: "Paste 1–5 key pages. Format: `Title | https://notion.so/...`"
+
+If no: omit the section.
 
 ---
 
-## Phase 7 — Conventions (defaults work for most)
+## Step 8 — Preview + write
 
-Use **AskUserQuestion**:
+Compose the full `CLAUDE.md`:
 
-> "I'll set sensible defaults for note paths, frontmatter, and meeting-skip patterns. Want to customize anything?"
-> - "Use the defaults (Recommended)"
-> - "Let me customize"
+1. `# <Name> Work PKB` + bio line `<Name> — <Title>.`
+2. `## Skills` — verbatim from template
+3. `## Vault Layout (ACE Framework)` — verbatim from template (defaults work)
+4. `## People` with the populated `### Importance Tiers` table. Then `### Direct Reports` and `### Key Stakeholders` as plain bullet lists of names — no descriptions (skills don't need them; user can add later by hand).
+5. `## Channels (Slack)` — only the subsections they filled in
+6. `## Projects / Initiatives` — only if they listed projects
+7. `## Gmail Labels` — only if they didn't skip
+8. `## Notion` — only if they have pages
+9. `## Conventions` — verbatim from template (defaults)
+10. `## Working Rules` — verbatim from template
+11. `## Key Files` — verbatim from template
 
-If they pick customize, ask one follow-up: "Anything specific you want changed? (E.g., different daily-note path, additional meeting titles to skip.)" — then apply their changes manually to the standard convention block.
+Show the full proposed `CLAUDE.md` in a fenced code block, then **AskUserQuestion**:
 
-Otherwise, fall back to the same `## Conventions` block in `CLAUDE.md.template.md` verbatim.
-
----
-
-## Phase 8 — Preview and confirm
-
-Compose the full `CLAUDE.md` from their answers. Use the same headings and ordering as `CLAUDE.md.template.md`:
-
-1. Title `# <Name> Work PKB` + bio paragraph
-2. `## Skills` (verbatim from template)
-3. `## Vault Layout (ACE Framework)` (verbatim from template — defaults)
-4. `## People` with `### Importance Tiers` table populated, then `### Direct Reports` and `### Key Stakeholders` with descriptions
-5. `## Channels (Slack)` with the 5 subsections (omit subsections they skipped)
-6. `## Projects / Initiatives`
-7. `## Gmail Labels` (or omit + add note if they skipped)
-8. `## Notion` (or omit if skipped)
-9. `## Conventions` (defaults or their customization)
-10. `## Working Rules` (verbatim from template)
-11. `## Key Files` (verbatim from template)
-
-Show them the **full proposed `CLAUDE.md` content** in a fenced code block so they can read every line. Then use **AskUserQuestion**:
-
-> "Here's what I'll write to `CLAUDE.md`. Look it over — anything you want to change?"
+> "Here's what I'll write. Look it over."
 > - "Looks good — write it"
 > - "Let me adjust something"
 
-If "adjust something", ask: "Which section, and what should change?" Apply their fix and re-show. Loop until they approve.
+If "adjust", ask "Which section?" Apply their fix and re-show. Loop until approval.
 
 ---
 
-## Phase 9 — Write the file
+## Step 9 — Write the file
 
-Write the approved content to `CLAUDE.md` at vault root using `Write`. Confirm with: "✅ Wrote `CLAUDE.md`."
+Use `Write` to save the approved content to `CLAUDE.md` at vault root. Confirm: "✅ Wrote `CLAUDE.md`."
 
 ---
 
-## Phase 10 — Next steps checklist
+## Step 10 — Brief next-steps
 
-Print this final message:
+Print a short message — don't repeat what's already in the README:
 
-> "**You're done with config.** Here's what to do next, in order:
+> "**Done.** Three things to do next:
 >
-> 1. **Connect MCP servers** for the integrations you want, via Claude Code's MCP setup. The skills work with whatever subset you connect:
->    - Slack — needed for `/morning-start`'s overnight scan and `/blocker-scan`
->    - Gmail — needed for `/morning-start`'s email triage and `/meeting-ingest`'s transcript pull
->    - Google Calendar — needed for `/prep-day`'s meeting prep
->    - Google Drive — needed for `/meeting-ingest` to read transcript docs
->    - Notion (optional) — adds context to `/prep-meeting` and `/prep-1on1`
+> 1. Connect MCP servers in Claude Code (Slack, Gmail, Google Calendar, Drive, optionally Notion)
+> 2. `cp .claude/settings.local.json.example .claude/settings.local.json` to pre-approve the skills' tool calls
+> 3. Run `/morning-start` for your first daily briefing
 >
-> 2. **Copy the permissions template:**
->    ```bash
->    cp .claude/settings.local.json.example .claude/settings.local.json
->    ```
->    This pre-approves the skills' tool calls so you don't get prompted constantly.
->
-> 3. **Try `/morning-start`** — your first daily briefing. It'll degrade gracefully if some MCPs aren't connected yet.
->
-> 4. **Once you've confirmed it works, delete the sample notes** — see the README's 'Cleanup after you understand the vault' section for the list.
->
-> If anything looks wrong in the briefing, you can re-run me (`/setup-vault`) and pick the 'Replace' option, or hand-edit `CLAUDE.md` directly. Both work."
+> Re-run `/setup-vault` anytime to redo the config from scratch."
 
 ## Notes
 
-- **Don't write `CLAUDE.md` until Phase 9.** All earlier phases are read-only conversation. Users can hit Cancel at any time without leaving a half-written config.
-- **Free-form input is fine** for names, channel lists, project names, etc. Use `AskUserQuestion` only for binary/multi-choice (yes/no, skip/customize, replace/cancel).
-- **Trust their input.** If they say their CEO is "@Maya Patel", write `@Maya Patel` — don't strip the `@` or correct capitalization.
-- **Skip means skip.** If they skip a section, omit it from the output entirely (don't write empty TODO placeholders).
-- **Defaults are good defaults.** The template's Vault Layout, Working Rules, Key Files, and most of Conventions are good for almost everyone. Don't ask them to confirm those — just include verbatim.
-- **Length.** A complete walkthrough produces ~80–150 line CLAUDE.md depending on how many people / channels / projects they have. Show the full preview before writing — don't truncate.
+- **Read-only until Step 9.** Everything before that is conversation. Cancel at any prompt is safe.
+- **Optional means optional.** Skills run fine with just `## People` (and ideally `## Channels` + `## Gmail Labels` for full functionality). Projects + Notion are nice-to-have.
+- **No descriptions per person.** Direct Reports and Key Stakeholders sections list names only — `- @Cary Wolbers`, no follow-up. The user can hand-edit later if they want descriptions.
+- **No customization questions on Conventions / Vault Layout / Working Rules.** Defaults work for almost everyone; surface a comment in the output saying they can edit later.
+- **Free-form for lists** (names, channels, projects, labels). `AskUserQuestion` only for binary/multi-choice (yes/no, replace/cancel, label-system branch).
