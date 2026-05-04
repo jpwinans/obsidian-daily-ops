@@ -16,15 +16,15 @@ A self-contained Obsidian vault and Claude Code skill pack for running your day:
 
 2. **Open the folder in Obsidian** as a vault. The folder tree is already set up.
 
-3. **Fill in `CLAUDE.md`.** Copy the template and edit:
-   ```bash
-   cp CLAUDE.md.template.md CLAUDE.md
-   ```
-   Replace every `TODO` with your real people, channels, projects, and Gmail labels. See `CLAUDE.md.example.md` for a fully filled-out reference.
+3. **Install Claude Code** if you don't have it: <https://docs.claude.com/code>.
 
-   *Why the double `.md` extension?* Obsidian only renders files whose name ends in `.md`. Naming the source files `CLAUDE.md.template.md` and `CLAUDE.md.example.md` lets you read them inside Obsidian as you fill in your real `CLAUDE.md`. Claude Code reads `CLAUDE.md` directly — the `.template.md` / `.example.md` files are for human reference only.
+4. **Open Claude Code in the vault directory** and run **`/setup-vault`**.
 
-4. **Install Claude Code** if you don't have it: <https://docs.claude.com/code>.
+   The wizard walks you through every question needed to configure the vault — your name and role, the people who matter (CEO, manager, peers, direct reports, stakeholders), Slack channels you watch, active projects, Gmail labels, optional Notion pages. ~5–10 minutes of plain-English Q&A. It writes your `CLAUDE.md` for you at the end after showing you a preview.
+
+   **Prefer to edit by hand?** Copy `CLAUDE.md.template.md` → `CLAUDE.md` and fill in the `TODO` markers. See `CLAUDE.md.example.md` for a filled-out reference.
+
+   *Why the double `.md` extension?* Obsidian only renders files whose name ends in `.md`. Naming the source files `CLAUDE.md.template.md` and `CLAUDE.md.example.md` lets you read them inside Obsidian. Claude Code reads `CLAUDE.md` directly — the `.template.md` / `.example.md` files are for human reference only.
 
 5. **Connect MCP servers** for the integrations you want. The skills work with whatever subset you have — they degrade gracefully when an MCP isn't connected.
    - **Slack** — used by `/morning-start`, `/morning-brief`, `/blocker-scan`
@@ -37,9 +37,9 @@ A self-contained Obsidian vault and Claude Code skill pack for running your day:
    ```bash
    cp .claude/settings.local.json.example .claude/settings.local.json
    ```
-   Add MCP tool patterns you want pre-approved (see comment in the file).
+   This pre-approves every MCP tool the skills use. Trim what you don't need.
 
-7. **Open Claude Code in the vault directory** and try `/morning-start`.
+7. **Try `/morning-start`** for your first daily briefing.
 
 ### Cleanup after you understand the vault
 
@@ -106,6 +106,7 @@ _Meta/          Templates
 | `/action-items-compress` | Consolidates duplicate action items across the vault |
 | `/action-items-triage` | Interactive HTML triage view (Prune / Focus / Balance) |
 | `/blocker-scan` | Risk digest — Slack + vault, classified by ownership and age |
+| `/setup-vault` | Interactive wizard for first-time CLAUDE.md configuration (run once) |
 | `/refresh-vault` | Detects information drift and DRY violations across the vault |
 | `/hyper-explore-vault` | Multi-agent vault audit (structural health, gaps, hidden threads) |
 
