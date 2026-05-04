@@ -60,15 +60,15 @@ Compute the `oldest` Unix timestamp accordingly. Pass to `slack-triage`:
 
 `slack-triage` returns a structured triage with `items` (action / awareness / info classified, age-tiered, severity-scored), a `deploySummary`, and `deployIssues`. If Slack MCP is unavailable, it will surface that — log the gap and continue.
 
-### Step 4 — Scan Gmail via the gmail-gtd-triage helper
+### Step 4 — Scan Gmail via the gmail-classifier helper
 
-Pass to `gmail-gtd-triage`:
+Pass to `gmail-classifier`:
 - `labels`: from `vault-config.labels`
 - `personTiers`: same as above
 - `query`: `in:inbox newer_than:3d`
 - `maxThreads`: 30
 
-It returns classified threads with recommended GTD labels. If the Gmail MCP is unavailable, log the gap and continue.
+It returns classified threads with a recommended label per thread. If the Gmail MCP is unavailable, log the gap and continue.
 
 ### Step 5 — Scan vault state
 
