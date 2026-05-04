@@ -59,7 +59,7 @@ Used by skills to weight tasks, emails, and Slack messages by who's behind them.
 
 ## Channels (Slack)
 
-Used by `/morning:start`, `/morning:brief`, `/blocker:scan`. Channel names are enough; only set IDs for channels Slack search can't find by name (e.g. private channels you can't search across).
+Used by `/morning-start`, `/morning-brief`, `/blocker-scan`. Channel names are enough; only set IDs for channels Slack search can't find by name (e.g. private channels you can't search across).
 
 ### Daily Pulse
 - TODO: `#channel-name` — purpose
@@ -93,7 +93,7 @@ The example structure below is one approach. Use whatever taxonomy you already h
 
 ## Notion (optional)
 
-Used by `/morning:start`, `/prep:meeting`, `/prep:1on1` to cross-reference. Skip the section entirely if you don't use Notion.
+Used by `/morning-start`, `/prep-meeting`, `/prep-1on1` to cross-reference. Skip the section entirely if you don't use Notion.
 
 - TODO: `[Page Title](url)` — what's there
 
@@ -113,8 +113,7 @@ Used by `/morning:start`, `/prep:meeting`, `/prep:1on1` to cross-reference. Skip
   - [ ] Medium priority task 🔼 📅 YYYY-MM-DD
   ```
 - **Task contexts:** `@meeting`, `@review`, `@blocked`, `@delegate`, `@discuss`
-- **Meeting ignore patterns:** `Lunch`, `Focus Time`, `Block`, `OOO` — skipped by `/prep:day`
-- **Stakeholder audiences:** `manager`, `team`, `leadership` — used by `/stakeholder:update`
+- **Meeting ignore patterns:** `Lunch`, `Focus Time`, `Block`, `OOO` — skipped by `/prep-day`
 
 ## Working Rules
 

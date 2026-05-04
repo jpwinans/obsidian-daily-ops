@@ -1,4 +1,6 @@
 {
+  "_comment": "Copy to .claude/settings.local.json. The MCP tool patterns below pre-approve every tool the suite's skills need across Slack / Gmail / Google Calendar / Google Drive / Notion. Remove any patterns for services you haven't connected — they're harmless if left in (they only fire if a skill actually calls them) but trimming keeps the permissions surface minimal.",
+
   "permissions": {
     "allow": [
       "Read",
@@ -6,18 +8,40 @@
       "Edit",
       "Glob",
       "Grep",
+      "Task",
+      "TaskOutput",
       "Bash(ls:*)",
       "Bash(find:*)",
       "Bash(mkdir:*)",
       "Bash(git status)",
       "Bash(git log:*)",
-      "Bash(git diff:*)"
+      "Bash(git diff:*)",
+
+      "mcp__claude_ai_Slack__slack_read_channel",
+      "mcp__claude_ai_Slack__slack_read_thread",
+      "mcp__claude_ai_Slack__slack_search_public",
+      "mcp__claude_ai_Slack__slack_search_public_and_private",
+
+      "mcp__claude_ai_Gmail__gmail_search_messages",
+      "mcp__claude_ai_Gmail__gmail_search_threads",
+      "mcp__claude_ai_Gmail__gmail_list_labels",
+      "mcp__claude_ai_Gmail__gmail_read_message",
+      "mcp__claude_ai_Gmail__gmail_get_thread",
+
+      "mcp__claude_ai_Google_Calendar__list_calendars",
+      "mcp__claude_ai_Google_Calendar__list_events",
+
+      "mcp__claude_ai_Google_Drive__read_file_content",
+      "mcp__claude_ai_Google_Drive__get_file_metadata",
+      "mcp__claude_ai_Google_Drive__download_file_content",
+
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-fetch"
     ],
     "ask": [
       "Bash(rm:*)",
       "Bash(git push:*)",
       "Bash(git commit:*)"
     ]
-  },
-  "_comment": "Copy this file to settings.local.json and edit. Add MCP tool patterns as you connect Slack, Gmail, Google Calendar, and Notion (e.g. mcp__claude_ai_Slack__slack_read_channel)."
+  }
 }
